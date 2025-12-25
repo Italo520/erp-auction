@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { BiddingState } from '../components/features/bidding/bidding.types';
-import { GetLiveBiddingUseCase } from '../../core/usecases/bidding/GetLiveBiddingUseCase';
-import { PlaceBidUseCase } from '../../core/usecases/bidding/PlaceBidUseCase';
-import { useRepositories } from '../../core/contexts/RepositoryContext';
-import { useAuth } from '../contexts/AuthContext';
+import { BiddingState } from '@/presentation/components/features/bidding/bidding.types';
+import { GetLiveBiddingUseCase } from '@/core/usecases/bidding/GetLiveBiddingUseCase';
+import { PlaceBidUseCase } from '@/core/usecases/bidding/PlaceBidUseCase';
+import { useRepositories } from '@/core/contexts/RepositoryContext';
+import { useAuth } from '@/presentation/hooks/useAuth';
 
 export function useBidding(auctionId: string) {
     const { bidRepo } = useRepositories();
