@@ -2,7 +2,7 @@ import React from 'react';
 import { BiddingState } from './bidding.types';
 import { BidInput } from './BidInput';
 import { LiveIndicator } from './LiveIndicator';
-import { formatCurrency } from '../../../../../shared/utils/formatters';
+import { formatCurrency } from '@/shared/utils/formatters';
 import { Clock } from 'lucide-react';
 
 interface BidPanelProps {

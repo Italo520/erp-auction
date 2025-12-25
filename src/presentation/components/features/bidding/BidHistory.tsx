@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bid } from './bidding.types';
-import { formatCurrency } from '../../../../../shared/utils/formatters';
+import { formatCurrency } from '@/shared/utils/formatters';
 
 interface BidHistoryProps {
     bids: Bid[];

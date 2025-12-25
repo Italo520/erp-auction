@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '../../ui/Input/Input';
+import { Input } from '@/presentation/components/ui/Input/Input';
 import { FormFieldProps } from './form.types';
 
 export const FormField: React.FC<FormFieldProps> = ({

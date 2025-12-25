@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from '../../ui/Button/Button';
-import { formatCurrency } from '../../../../../shared/utils/formatters';
+import { Button } from '@/presentation/components/ui/Button/Button';
+import { formatCurrency } from '@/shared/utils/formatters';
 
 interface BidInputProps {
     currentBid: number;
