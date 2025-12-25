@@ -7,9 +7,27 @@ import VehicleNew from './pages/VehicleNew';
 import LiveBidding from './pages/LiveBidding';
 import VehicleDetails from './pages/VehicleDetails';
 import { RepositoryProvider } from './core/contexts/RepositoryContext';
+import { AuthProvider } from './presentation/contexts/AuthContext';
+import { useAuth } from './presentation/hooks/useAuth';
+
+// Componente ProtectedRoute para proteger rotas privadas
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <div className="h-screen w-full flex items-center justify-center bg-background-light dark:bg-background-dark text-slate-500">Carregando...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <>{children}</>;
+};
 
 const Sidebar = () => {
   const location = useLocation();
+  const { user, logout } = useAuth();
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -78,16 +96,26 @@ const Sidebar = () => {
       </nav>
 
       <div className="p-4 border-t border-slate-200 dark:border-slate-800">
-        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#232f48] cursor-pointer transition-colors">
+        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-[#232f48] transition-colors relative group">
           <div 
-            className="bg-center bg-no-repeat bg-cover rounded-full size-9" 
-            style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVK4IJfncfhL_25Eq0T7DWIWBhcRywdPro73gr3cybjfflGzyEVZtICR2w8aLUlqGZpqsFz3Xbt-7LhmLGXMQx6LBW2pixE3l6tgPlz8dGr8hEhKKYVdvfw70kSO6_oeynpOZmy34yy1-cjJxbpx0f0QaE5ou8utQ8qxDkedyn5juhAkFpzf_NoJ54gevbAId7-al_sgxEuR3MGkv9twQ080Hc5ZBuZ-tpmdeBqz6O_de4Uim36cmmOStXfUiOkWvMNye1dH0LJjlc")' }}
+            className="bg-center bg-no-repeat bg-cover rounded-full size-9 shrink-0" 
+            style={{ backgroundImage: `url("${user?.avatarUrl || 'https://via.placeholder.com/150'}")` }}
           ></div>
-          <div className="flex flex-col">
-            <p className="text-sm font-medium text-slate-900 dark:text-white">Admin User</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400">admin@leiloes083.com</p>
+          <div className="flex flex-col overflow-hidden">
+            <p className="text-sm font-medium text-slate-900 dark:text-white truncate">{user?.name || 'Carregando...'}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user?.email}</p>
           </div>
-          <span className="material-symbols-outlined ml-auto text-slate-400 text-sm">expand_more</span>
+          
+          {/* Logout Menu (Hover) */}
+          <div className="absolute bottom-full left-0 w-full pb-2 hidden group-hover:block">
+            <button 
+              onClick={() => logout()}
+              className="w-full flex items-center gap-2 bg-card-dark border border-slate-700 p-3 rounded-lg text-red-400 hover:bg-slate-800 transition-colors shadow-lg"
+            >
+              <span className="material-symbols-outlined text-[20px]">logout</span>
+              <span className="text-sm font-medium">Sair</span>
+            </button>
+          </div>
         </div>
       </div>
     </aside>
@@ -108,17 +136,19 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 const App = () => {
   return (
     <RepositoryProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/auctions" element={<Layout><Auctions /></Layout>} />
-          <Route path="/vehicle/new" element={<Layout><VehicleNew /></Layout>} />
-          <Route path="/vehicle/:id" element={<Layout><VehicleDetails /></Layout>} />
-          <Route path="/live/:id" element={<Layout><LiveBidding /></Layout>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
+            <Route path="/auctions" element={<ProtectedRoute><Layout><Auctions /></Layout></ProtectedRoute>} />
+            <Route path="/vehicle/new" element={<ProtectedRoute><Layout><VehicleNew /></Layout></ProtectedRoute>} />
+            <Route path="/vehicle/:id" element={<ProtectedRoute><Layout><VehicleDetails /></Layout></ProtectedRoute>} />
+            <Route path="/live/:id" element={<ProtectedRoute><Layout><LiveBidding /></Layout></ProtectedRoute>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
     </RepositoryProvider>
   );
 };
