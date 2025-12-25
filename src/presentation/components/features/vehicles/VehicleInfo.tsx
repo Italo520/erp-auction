@@ -1,7 +1,7 @@
 import React from 'react';
-import { Vehicle } from '../../../../../core/entities/Vehicle';
-import { Badge } from '../../ui/Badge/Badge'; // Assumindo que Badge existe ou usaremos span estilizado se não existir (nao vi Badge na lista de arquivos, vou usar span estilizado como no AuctionCard por segurança, ou criar Badge dps)
-import { formatCurrency } from '../../../../../shared/utils/formatters';
+import { Vehicle } from '@/core/entities/Vehicle';
+import { Badge } from '@/presentation/components/ui/Badge/Badge';
+import { formatCurrency } from '@/shared/utils/formatters';
 
 interface VehicleInfoProps {
     vehicle: Vehicle;

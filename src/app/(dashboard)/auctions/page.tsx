@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Container } from '../../../presentation/components/layout/Container/Container';
-import { AuctionList } from '../../../presentation/components/features/auctions/AuctionList';
-import { AuctionFilters } from '../../../presentation/components/features/auctions/AuctionFilters';
-import { useAuctions } from '../../../presentation/hooks/useAuctions';
-import { AuctionStatus } from '../../../core/entities/Auction';
-import { Button } from '../../../presentation/components/ui/Button/Button';
+import { Container } from '@/presentation/components/layout/Container/Container';
+import { AuctionList } from '@/presentation/components/features/auctions/AuctionList';
+import { AuctionFilters } from '@/presentation/components/features/auctions/AuctionFilters';
+import { useAuctions } from '@/presentation/hooks/useAuctions';
+import { AuctionStatus } from '@/core/entities/Auction';
+import { Button } from '@/presentation/components/ui/Button/Button';
 import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';

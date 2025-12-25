@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Home, Gavel, Users, Settings, LogOut } from 'lucide-react';
-import { cn } from '../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 import { SidebarItem } from './SidebarItem';
 import { SidebarUser } from './SidebarUser';
 import { SidebarProps } from './Sidebar.types';

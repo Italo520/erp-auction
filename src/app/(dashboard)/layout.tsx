@@ -1,6 +1,6 @@
 import React from 'react';
-import { Sidebar } from '../../presentation/components/layout/Sidebar/Sidebar';
-import { Header } from '../../presentation/components/layout/Header/Header';
+import { Sidebar } from '@/presentation/components/layout/Sidebar/Sidebar';
+import { Header } from '@/presentation/components/layout/Header/Header';
 
 export default function DashboardLayout({
     children,

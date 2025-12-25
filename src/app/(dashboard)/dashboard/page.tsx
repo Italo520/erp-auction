@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { Container } from '../../../presentation/components/layout/Container/Container';
-import { StatsCard } from '../../../presentation/components/features/dashboard/StatsCard';
-import { RecentActivity } from '../../../presentation/components/features/dashboard/RecentActivity';
-import { QuickActions } from '../../../presentation/components/features/dashboard/QuickActions';
-import { useDashboardViewModel } from '../../../presentation/viewmodels/DashboardViewModel';
+import { Container } from '@/presentation/components/layout/Container/Container';
+import { StatsCard } from '@/presentation/components/features/dashboard/StatsCard';
+import { RecentActivity } from '@/presentation/components/features/dashboard/RecentActivity';
+import { QuickActions } from '@/presentation/components/features/dashboard/QuickActions';
+import { useDashboardViewModel } from '@/presentation/viewmodels/DashboardViewModel';
 import { Gavel, Car, DollarSign, Users, Plus, FileText, Settings } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 

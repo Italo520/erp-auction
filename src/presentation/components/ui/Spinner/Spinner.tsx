@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '../../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 import { Loader2 } from 'lucide-react';
 
 interface SpinnerProps {

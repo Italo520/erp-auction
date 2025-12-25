@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { VehicleImage } from '../../../../../core/entities/Vehicle';
-import { cn } from '../../../../../shared/utils/cn';
+import { VehicleImage } from '@/core/entities/Vehicle';
+import { cn } from '@/shared/utils/cn';
 import { Image as ImageIcon } from 'lucide-react';
 
 interface VehicleGalleryProps {

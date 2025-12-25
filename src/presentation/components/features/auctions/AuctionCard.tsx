@@ -1,9 +1,9 @@
 import React from 'react';
-import { Auction } from '../../../../../core/entities/Auction';
-import { Card } from '../../ui/Card/Card';
-import { cn } from '../../../../../shared/utils/cn';
+import { Auction } from '@/core/entities/Auction';
+import { Card } from '@/presentation/components/ui/Card/Card';
+import { cn } from '@/shared/utils/cn';
 import { Calendar, Clock, MapPin } from 'lucide-react';
-import { formatCurrency, formatDate } from '../../../../../shared/utils/formatters';
+import { formatCurrency, formatDate } from '@/shared/utils/formatters';
 import { AuctionCardProps } from './auctions.types';
 
 export const AuctionCard: React.FC<AuctionCardProps> = ({ auction, onClick }) => {

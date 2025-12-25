@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { VehicleImageUploadProps } from './vehicles.types';
 import { Upload, X, Image as ImageIcon } from 'lucide-react';
-import { cn } from '../../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 
 export const VehicleImageUpload: React.FC<VehicleImageUploadProps> = ({ images, onUpload, onRemove }) => {
     const fileInputRef = useRef<HTMLInputElement>(null);

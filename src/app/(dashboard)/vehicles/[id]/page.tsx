@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useEffect, use } from 'react';
-import { Container } from '../../../../presentation/components/layout/Container/Container';
-import { VehicleGallery } from '../../../../presentation/components/features/vehicles/VehicleGallery';
-import { VehicleInfo } from '../../../../presentation/components/features/vehicles/VehicleInfo';
-import { VehicleSpecs } from '../../../../presentation/components/features/vehicles/VehicleSpecs';
-import { VehicleActions } from '../../../../presentation/components/features/vehicles/VehicleActions';
-import { useVehicles } from '../../../../presentation/hooks/useVehicles';
+import { Container } from '@/presentation/components/layout/Container/Container';
+import { VehicleGallery } from '@/presentation/components/features/vehicles/VehicleGallery';
+import { VehicleInfo } from '@/presentation/components/features/vehicles/VehicleInfo';
+import { VehicleSpecs } from '@/presentation/components/features/vehicles/VehicleSpecs';
+import { VehicleActions } from '@/presentation/components/features/vehicles/VehicleActions';
+import { useVehicles } from '@/presentation/hooks/useVehicles';
 import { useRouter } from 'next/navigation';
-import { Spinner } from '../../../../presentation/components/ui/Spinner/Spinner';
+import { Spinner } from '@/presentation/components/ui/Spinner/Spinner';
 
 interface VehicleDetailPageProps {
     params: Promise<{
