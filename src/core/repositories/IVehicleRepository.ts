@@ -7,6 +7,7 @@ export interface VehicleFilterParams extends PaginationParams {
   make?: string;
   model?: string;
   yearRange?: { min: number; max: number };
+  search?: string;
 }
 
 export interface IVehicleRepository {
