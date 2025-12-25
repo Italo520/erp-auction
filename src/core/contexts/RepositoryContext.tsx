@@ -4,10 +4,10 @@ import { IAuctionRepository } from '../repositories/IAuctionRepository';
 import { IVehicleRepository } from '../repositories/IVehicleRepository';
 import { IBidRepository } from '../repositories/IBidRepository';
 
-import { MockAuthRepository } from '../../infrastructure/repositories/MockAuthRepository';
-import { MockAuctionRepository } from '../../infrastructure/repositories/MockAuctionRepository';
-import { MockVehicleRepository } from '../../infrastructure/repositories/MockVehicleRepository';
-import { MockBidRepository } from '../../infrastructure/repositories/MockBidRepository';
+import { SupabaseAuthRepository } from '../../infrastructure/repositories/SupabaseAuthRepository';
+import { SupabaseAuctionRepository } from '../../infrastructure/repositories/SupabaseAuctionRepository';
+import { SupabaseVehicleRepository } from '../../infrastructure/repositories/SupabaseVehicleRepository';
+import { MockBidRepository } from '../../infrastructure/repositories/MockBidRepository'; // Bid ainda é mock até o WebSocket ser 100% integrado
 
 interface RepositoryContextData {
   authRepo: IAuthRepository;
@@ -21,9 +21,9 @@ const RepositoryContext = createContext<RepositoryContextData>({} as RepositoryC
 export const RepositoryProvider = ({ children }: { children: React.ReactNode }) => {
   // Initialize repositories (singleton scope for the app lifetime)
   const repositories = useMemo(() => ({
-    authRepo: new MockAuthRepository(),
-    auctionRepo: new MockAuctionRepository(),
-    vehicleRepo: new MockVehicleRepository(),
+    authRepo: new SupabaseAuthRepository(),
+    auctionRepo: new SupabaseAuctionRepository(),
+    vehicleRepo: new SupabaseVehicleRepository(),
     bidRepo: new MockBidRepository(),
   }), []);
 

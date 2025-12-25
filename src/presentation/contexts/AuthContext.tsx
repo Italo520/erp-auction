@@ -9,7 +9,7 @@ export interface AuthContextData {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (email: string) => Promise<void>;
+  login: (email: string, password?: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -41,10 +41,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return () => { mounted = false; };
   }, [getCurrentUserUseCase]);
 
-  const login = async (email: string) => {
+  const login = async (email: string, password?: string) => {
     setIsLoading(true);
     try {
-      await loginUseCase.execute(email);
+      await loginUseCase.execute(email, password);
       // Após o login, buscamos os dados do usuário atualizados
       const currentUser = await getCurrentUserUseCase.execute();
       setUser(currentUser);
