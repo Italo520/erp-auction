@@ -1,27 +1,29 @@
 'use client';
 
-import React from 'react';
-import { Container } from '../../../presentation/components/layout/Container/Container';
-import { useBidding } from '../../../presentation/hooks/useBidding';
-import { BidPanel } from '../../../presentation/components/features/bidding/BidPanel';
-import { BidHistory } from '../../../presentation/components/features/bidding/BidHistory';
-import { VehicleGallery } from '../../../presentation/components/features/vehicles/VehicleGallery';
-import { VehicleInfo } from '../../../presentation/components/features/vehicles/VehicleInfo';
-import { VehicleSpecs } from '../../../presentation/components/features/vehicles/VehicleSpecs';
-import { useVehicles } from '../../../presentation/hooks/useVehicles'; // Reusar para dados estáticos do veículo
-import { Button } from '../../../presentation/components/ui/Button/Button';
+import React, { use } from 'react';
+import { Container } from '@/presentation/components/layout/Container/Container';
+import { useBidding } from '@/presentation/hooks/useBidding';
+import { BidPanel } from '@/presentation/components/features/bidding/BidPanel';
+import { BidHistory } from '@/presentation/components/features/bidding/BidHistory';
+import { VehicleGallery } from '@/presentation/components/features/vehicles/VehicleGallery';
+import { VehicleInfo } from '@/presentation/components/features/vehicles/VehicleInfo';
+import { VehicleSpecs } from '@/presentation/components/features/vehicles/VehicleSpecs';
+import { useVehicles } from '@/presentation/hooks/useVehicles'; // Reusar para dados estáticos do veículo
+import { Button } from '@/presentation/components/ui/Button/Button';
+import { Spinner } from '@/presentation/components/ui/Spinner/Spinner';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 interface LivePageProps {
-    params: {
+    params: Promise<{
         id: string; // Auction ID or Vehicle ID? Assuming AuctionID contains Vehicle info normally. But let's assume params.id is auctionId.
-    };
+    }>;
 }
 
 export default function LiveBiddingPage({ params }: LivePageProps) {
     const router = useRouter();
-    const { state: biddingState, connectionStatus, placeBid } = useBidding(params.id);
+    const { id } = use(params);
+    const { state: biddingState, connectionStatus, placeBid } = useBidding(id);
 
     // Como não temos endpoint real que cruza vehicle-auction ainda, vou usar um mock de vehicleId ou buscar o veículo
     // que o leilão se refere. Para simplificar o mock, vou pegar um veículo fixo ou buscar se tivesse ID.
@@ -39,7 +41,7 @@ export default function LiveBiddingPage({ params }: LivePageProps) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0d121c]">
                 <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                    <Spinner size="lg" className="mx-auto mb-4" />
                     <p className="text-slate-500">Conectando ao leilão ao vivo...</p>
                 </div>
             </div>
