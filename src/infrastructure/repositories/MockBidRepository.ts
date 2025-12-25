@@ -56,28 +56,28 @@ export class MockBidRepository implements IBidRepository {
   // Simulação de Realtime
   subscribeToVehicleBids(vehicleId: string, callback: (bid: Bid) => void): () => void {
     console.log(`[MockRealtime] Subscribed to bids for vehicle ${vehicleId}`);
-    
+
     // Simula um novo lance a cada 15-30 segundos para testar a UI
     const interval = setInterval(() => {
       const shouldEmit = Math.random() > 0.5;
       if (shouldEmit) {
         const currentHighest = MOCK_BIDS
-            .filter(b => b.vehicleId === vehicleId)
-            .sort((a,b) => b.amount - a.amount)[0]?.amount || 50000;
-            
+          .filter(b => b.vehicleId === vehicleId)
+          .sort((a, b) => b.amount - a.amount)[0]?.amount || 50000;
+
         const nextAmount = currentHighest + 500;
-        
+
         const newBid: Bid = {
-            id: `bid-auto-${Date.now()}`,
-            auctionId: 'auction-124',
-            vehicleId,
-            userId: 'user-random-' + Math.floor(Math.random() * 100),
-            amount: nextAmount,
-            timestamp: new Date(),
-            channel: 'WEB',
-            isCancelled: false
+          id: `bid-auto-${Date.now()}`,
+          auctionId: 'auction-124',
+          vehicleId,
+          userId: 'user-random-' + Math.floor(Math.random() * 100),
+          amount: nextAmount,
+          timestamp: new Date(),
+          channel: 'WEB',
+          isCancelled: false
         };
-        
+
         MOCK_BIDS.unshift(newBid);
         callback(newBid);
       }
@@ -87,5 +87,14 @@ export class MockBidRepository implements IBidRepository {
       console.log(`[MockRealtime] Unsubscribed from vehicle ${vehicleId}`);
       clearInterval(interval);
     };
+  }
+
+  subscribeToAuctionBids(auctionId: string, callback: (bid: Bid) => void): () => void {
+    console.log(`[MockRealtime] Subscribed to bids for auction ${auctionId}`);
+    // Reuse similar logic or simplified for mock
+    const interval = setInterval(() => {
+      // Emit logic could go here
+    }, 20000);
+    return () => clearInterval(interval);
   }
 }

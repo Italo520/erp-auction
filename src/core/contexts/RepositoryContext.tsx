@@ -8,6 +8,7 @@ import { IBidRepository } from '../repositories/IBidRepository';
 import { SupabaseAuthRepository } from '../../infrastructure/repositories/SupabaseAuthRepository';
 import { SupabaseAuctionRepository } from '../../infrastructure/repositories/SupabaseAuctionRepository';
 import { SupabaseVehicleRepository } from '../../infrastructure/repositories/SupabaseVehicleRepository';
+import { SupabaseBidRepository } from '../../infrastructure/repositories/SupabaseBidRepository';
 
 // Infra - Mocks
 import { MockAuthRepository } from '../../infrastructure/repositories/MockAuthRepository';
@@ -44,7 +45,7 @@ export const RepositoryProvider = ({ children }: { children: React.ReactNode }) 
       authRepo: new SupabaseAuthRepository(),
       auctionRepo: new SupabaseAuctionRepository(),
       vehicleRepo: new SupabaseVehicleRepository(),
-      bidRepo: new MockBidRepository(), // Maintain MockBid for now as per previous step
+      bidRepo: new SupabaseBidRepository(),
     };
   }, [useMock]);
 
