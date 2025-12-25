@@ -1,7 +1,6 @@
 import { IBidRepository } from '../../core/repositories/IBidRepository';
 import { Bid } from '../../core/entities/Bid';
 import { supabase } from '../api/supabaseClient';
-import { RealtimeChannel } from '@supabase/supabase-js';
 
 export class SupabaseBidRepository implements IBidRepository {
 
@@ -82,7 +81,7 @@ export class SupabaseBidRepository implements IBidRepository {
 
     subscribeToAuctionBids(auctionId: string, callback: (bid: Bid) => void): () => void {
         const channel = supabase
-            .channel(`auction_room_${auctionId}`)
+            .channel(`auction_room:${auctionId}`)
             .on(
                 'postgres_changes',
                 { event: 'INSERT', schema: 'public', table: 'bids', filter: `auction_id=eq.${auctionId}` },
