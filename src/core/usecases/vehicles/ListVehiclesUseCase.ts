@@ -1,0 +1,11 @@
+import { Vehicle } from '../../entities/Vehicle';
+import { IVehicleRepository, VehicleFilterParams } from '../../repositories/IVehicleRepository';
+import { PaginatedResult } from '../../../shared/types/domain.types';
+
+export class ListVehiclesUseCase {
+    constructor(private vehicleRepository: IVehicleRepository) { }
+
+    async execute(params: VehicleFilterParams): Promise<PaginatedResult<Vehicle>> {
+        return this.vehicleRepository.findAll(params);
+    }
+}
