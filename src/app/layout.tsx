@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
-const inter = Inter({ 
-  subsets: ["latin"], 
+const inter = Inter({
+  subsets: ["latin"],
   variable: "--font-inter",
   display: 'swap',
 });
 
-const notoSans = Noto_Sans({ 
-  subsets: ["latin"], 
-  weight: ["400", "500", "700"], 
+const notoSans = Noto_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
   variable: "--font-noto-sans",
   display: 'swap',
 });
@@ -32,6 +33,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${notoSans.variable} font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-hidden`}>
         {children}
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );

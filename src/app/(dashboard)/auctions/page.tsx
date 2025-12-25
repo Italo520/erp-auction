@@ -9,12 +9,19 @@ import { AuctionStatus } from '../../../core/entities/Auction';
 import { Button } from '../../../presentation/components/ui/Button/Button';
 import { Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 export default function AuctionsPage() {
     const router = useRouter();
-    const { auctions, isLoading, fetchAuctions } = useAuctions();
+    const { auctions, isLoading, error, fetchAuctions } = useAuctions();
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState<AuctionStatus | 'ALL'>('ALL');
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+        }
+    }, [error]);
 
     useEffect(() => {
         fetchAuctions({

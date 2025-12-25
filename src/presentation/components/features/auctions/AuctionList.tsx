@@ -2,12 +2,14 @@ import React from 'react';
 import { AuctionCard } from './AuctionCard';
 import { AuctionListProps } from './auctions.types';
 
+import { Skeleton } from '../../ui/Skeleton/Skeleton';
+
 export const AuctionList: React.FC<AuctionListProps> = ({ auctions, isLoading, onAuctionClick }) => {
     if (isLoading) {
         return (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3, 4, 5, 6].map((i) => (
-                    <div key={i} className="bg-slate-100 dark:bg-slate-800 h-64 rounded-xl animate-pulse"></div>
+                    <Skeleton key={i} className="h-[280px] w-full" />
                 ))}
             </div>
         );

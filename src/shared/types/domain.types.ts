@@ -1,13 +1,13 @@
 export interface PaginationParams {
   page: number;
-  perPage: number;
+  limit: number;
 }
 
 export interface PaginatedResult<T> {
   data: T[];
   total: number;
   page: number;
-  perPage: number;
+  limit: number;
   totalPages: number;
 }
 

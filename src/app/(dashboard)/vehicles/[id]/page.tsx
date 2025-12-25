@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, use } from 'react';
 import { Container } from '../../../../presentation/components/layout/Container/Container';
 import { VehicleGallery } from '../../../../presentation/components/features/vehicles/VehicleGallery';
 import { VehicleInfo } from '../../../../presentation/components/features/vehicles/VehicleInfo';
@@ -8,27 +8,31 @@ import { VehicleSpecs } from '../../../../presentation/components/features/vehic
 import { VehicleActions } from '../../../../presentation/components/features/vehicles/VehicleActions';
 import { useVehicles } from '../../../../presentation/hooks/useVehicles';
 import { useRouter } from 'next/navigation';
+import { Spinner } from '../../../../presentation/components/ui/Spinner/Spinner';
 
 interface VehicleDetailPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
 export default function VehicleDetailPage({ params }: VehicleDetailPageProps) {
     const router = useRouter();
+    // Unwrap params using React.use()
+    const { id } = use(params);
+
     const { getVehicle, currentVehicle, isLoading, error } = useVehicles();
 
     useEffect(() => {
-        if (params.id) {
-            getVehicle(params.id);
+        if (id) {
+            getVehicle(id);
         }
-    }, [getVehicle, params.id]);
+    }, [getVehicle, id]);
 
     if (isLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                <Spinner size="lg" />
             </div>
         );
     }
@@ -52,7 +56,7 @@ export default function VehicleDetailPage({ params }: VehicleDetailPageProps) {
     return (
         <Container>
             <VehicleActions
-                onEdit={() => router.push(`/vehicles/${params.id}/edit`)} // Rota futura
+                onEdit={() => router.push(`/vehicles/${id}/edit`)} // Rota futura
                 onDelete={() => alert("Funcionalidade de exclusão em desenvolvimento")}
                 onBack={() => router.back()}
             />
