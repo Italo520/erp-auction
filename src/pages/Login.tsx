@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../presentation/hooks/useAuth';
+import { Button } from '../presentation/components/ui/Button/Button';
+import { Input } from '../presentation/components/ui/Input/Input';
 
 const Login = () => {
   const navigate = useNavigate();
   const { login, isLoading, isAuthenticated } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   // Redirect if already logged in
   React.useEffect(() => {
@@ -18,9 +21,7 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // In this mock implementation, password isn't strictly checked by repo but we pass email
       await login(email);
-      // Navigation happens via useEffect on isAuthenticated change or manually here
       navigate('/dashboard');
     } catch (error) {
       alert('Falha ao realizar login. Tente novamente.');
@@ -36,7 +37,7 @@ const Login = () => {
           {/* Left Column: Visual/Marketing */}
           <div className="hidden lg:flex flex-col gap-6 sticky top-24">
             <div 
-              className="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[500px] relative group shadow-2xl" 
+              className="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[500px] relative group shadow-2xl border border-slate-800" 
               style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuD5IkqRrYh2QiMj4_P5lrpwmXgiJOBU8keWREqk_MFWxlX-e2c_sVqZjwasUcydzagzg87ud8SF9TaLUouFbcs8GzISj7u6_EhXf8Dp-yscUYY2xT5_D-7h1nxyQHRvBm99phCxVStJjJI6zUKEGw0Vz18Yv8GDCb_9nxA6IZbjtM7jwvfrs-U01bXoqZyrREdplqRi6TFViyfedEMLz2Xjm-akLi9acBerinIhM3kwFv6TIhufwLzJe852wVKBepueY9baOWOhEVFt")' }}
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -84,60 +85,49 @@ const Login = () => {
               </div>
             </div>
 
-            <form className="flex flex-col gap-5 p-6 md:p-8" onSubmit={handleLogin}>
-              <div className="flex flex-col gap-2">
-                <label className="text-[#111418] dark:text-white text-sm font-medium leading-normal">Email</label>
-                <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#92a4c9]">
-                    <span className="material-symbols-outlined text-[20px]">mail</span>
-                  </div>
-                  <input 
-                    className="flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#d1d5db] dark:border-[#324467] bg-white dark:bg-[#111722] focus:border-primary h-12 md:h-14 placeholder:text-[#92a4c9] pl-12 pr-4 text-base font-normal leading-normal transition-all" 
-                    placeholder="admin@leiloes083.com" 
-                    type="email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
+            <form className="flex flex-col gap-6 p-6 md:p-8" onSubmit={handleLogin}>
+              <Input
+                label="Email"
+                type="email"
+                placeholder="admin@leiloes083.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                leftIcon={<span className="material-symbols-outlined text-[20px]">mail</span>}
+              />
 
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
                   <label className="text-[#111418] dark:text-white text-sm font-medium leading-normal">Senha</label>
                   <a className="text-primary text-sm font-semibold hover:underline" href="#">Esqueceu a senha?</a>
                 </div>
-                <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#92a4c9]">
-                    <span className="material-symbols-outlined text-[20px]">lock</span>
-                  </div>
-                  <input 
-                    className="flex w-full min-w-0 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#d1d5db] dark:border-[#324467] bg-white dark:bg-[#111722] focus:border-primary h-12 md:h-14 placeholder:text-[#92a4c9] pl-12 pr-12 text-base font-normal leading-normal transition-all" 
-                    placeholder="••••••••" 
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <button className="absolute right-4 top-1/2 -translate-y-1/2 text-[#92a4c9] hover:text-white transition-colors cursor-pointer" type="button">
-                    <span className="material-symbols-outlined text-[20px]">visibility</span>
-                  </button>
-                </div>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  leftIcon={<span className="material-symbols-outlined text-[20px]">lock</span>}
+                  rightElement={
+                    <button 
+                      type="button" 
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="text-[#92a4c9] hover:text-white transition-colors cursor-pointer flex items-center"
+                    >
+                      <span className="material-symbols-outlined text-[20px]">{showPassword ? 'visibility_off' : 'visibility'}</span>
+                    </button>
+                  }
+                />
               </div>
 
-              <button 
-                type="submit"
-                disabled={isLoading}
-                className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 md:h-14 bg-primary hover:bg-primary/90 text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors shadow-lg shadow-primary/20 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              <Button 
+                type="submit" 
+                variant="primary" 
+                size="md" 
+                fullWidth 
+                isLoading={isLoading}
               >
-                {isLoading ? (
-                  <span className="flex items-center gap-2">
-                    <span className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
-                    Acessando...
-                  </span>
-                ) : (
-                  <span className="truncate">Acessar Sistema</span>
-                )}
-              </button>
+                {isLoading ? 'Acessando...' : 'Acessar Sistema'}
+              </Button>
 
               <div className="relative flex py-2 items-center">
                 <div className="flex-grow border-t border-[#e5e7eb] dark:border-[#324467]"></div>
@@ -146,19 +136,27 @@ const Login = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <button className="flex items-center justify-center gap-2 h-10 rounded-lg border border-[#d1d5db] dark:border-[#324467] bg-white dark:bg-[#111722] hover:bg-[#f3f4f6] dark:hover:bg-[#232f48] text-[#111418] dark:text-white transition-colors" type="button">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
-                  </svg>
-                  <span className="text-sm font-medium">Google</span>
-                </button>
-                <button className="flex items-center justify-center gap-2 h-10 rounded-lg border border-[#d1d5db] dark:border-[#324467] bg-white dark:bg-[#111722] hover:bg-[#f3f4f6] dark:hover:bg-[#232f48] text-[#111418] dark:text-white transition-colors" type="button">
-                  <span className="material-symbols-outlined text-[20px]">laptop_mac</span>
-                  <span className="text-sm font-medium">Apple</span>
-                </button>
+                <Button 
+                  type="button" 
+                  variant="secondary" 
+                  leftIcon={
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+                    </svg>
+                  }
+                >
+                  Google
+                </Button>
+                <Button 
+                  type="button" 
+                  variant="secondary" 
+                  leftIcon={<span className="material-symbols-outlined text-[20px]">laptop_mac</span>}
+                >
+                  Apple
+                </Button>
               </div>
             </form>
           </div>
