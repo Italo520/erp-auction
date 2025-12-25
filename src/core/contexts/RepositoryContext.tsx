@@ -1,20 +1,20 @@
 import React, { createContext, useContext, useMemo } from 'react';
-import { IAuthRepository } from '../repositories/IAuthRepository';
-import { IAuctionRepository } from '../repositories/IAuctionRepository';
-import { IVehicleRepository } from '../repositories/IVehicleRepository';
-import { IBidRepository } from '../repositories/IBidRepository';
+import { IAuthRepository } from '@/core/repositories/IAuthRepository';
+import { IAuctionRepository } from '@/core/repositories/IAuctionRepository';
+import { IVehicleRepository } from '@/core/repositories/IVehicleRepository';
+import { IBidRepository } from '@/core/repositories/IBidRepository';
 
-// Infra - Supabase
-import { SupabaseAuthRepository } from '../../infrastructure/repositories/SupabaseAuthRepository';
-import { SupabaseAuctionRepository } from '../../infrastructure/repositories/SupabaseAuctionRepository';
-import { SupabaseVehicleRepository } from '../../infrastructure/repositories/SupabaseVehicleRepository';
-import { SupabaseBidRepository } from '../../infrastructure/repositories/SupabaseBidRepository';
+// Implementations
+import { SupabaseAuthRepository } from '@/infrastructure/repositories/SupabaseAuthRepository';
+import { SupabaseAuctionRepository } from '@/infrastructure/repositories/SupabaseAuctionRepository';
+import { SupabaseVehicleRepository } from '@/infrastructure/repositories/SupabaseVehicleRepository';
+import { SupabaseBidRepository } from '@/infrastructure/repositories/SupabaseBidRepository';
 
-// Infra - Mocks
-import { MockAuthRepository } from '../../infrastructure/repositories/MockAuthRepository';
-import { MockAuctionRepository } from '../../infrastructure/repositories/MockAuctionRepository';
-import { MockVehicleRepository } from '../../infrastructure/repositories/MockVehicleRepository';
-import { MockBidRepository } from '../../infrastructure/repositories/MockBidRepository';
+// Mocks
+import { MockAuthRepository } from '@/infrastructure/repositories/MockAuthRepository';
+import { MockAuctionRepository } from '@/infrastructure/repositories/MockAuctionRepository';
+import { MockVehicleRepository } from '@/infrastructure/repositories/MockVehicleRepository';
+import { MockBidRepository } from '@/infrastructure/repositories/MockBidRepository';
 
 interface RepositoryContextData {
   authRepo: IAuthRepository;

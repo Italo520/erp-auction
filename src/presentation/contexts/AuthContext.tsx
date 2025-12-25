@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect, useMemo } from 'react';
-import { User } from '../../core/entities/User';
-import { LoginUseCase } from '../../core/usecases/auth/LoginUseCase';
-import { LogoutUseCase } from '../../core/usecases/auth/LogoutUseCase';
-import { GetCurrentUserUseCase } from '../../core/usecases/auth/GetCurrentUserUseCase';
-import { useRepositories } from '../../core/contexts/RepositoryContext';
+import { User } from '@/core/entities/User';
+import { LoginUseCase } from '@/core/usecases/auth/LoginUseCase';
+import { LogoutUseCase } from '@/core/usecases/auth/LogoutUseCase';
+import { GetCurrentUserUseCase } from '@/core/usecases/auth/GetCurrentUserUseCase';
+import { useRepositories } from '@/core/contexts/RepositoryContext';
 
 export interface AuthContextData {
   user: User | null;

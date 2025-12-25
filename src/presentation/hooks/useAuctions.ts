@@ -1,11 +1,11 @@
 import { useState, useCallback, useMemo } from 'react';
-import { Auction, AuctionStatus } from '../../core/entities/Auction';
-import { MockAuctionRepository } from '../../infrastructure/repositories/MockAuctionRepository';
-import { ListAuctionsUseCase } from '../../core/usecases/auctions/ListAuctionsUseCase';
-import { GetAuctionUseCase } from '../../core/usecases/auctions/GetAuctionUseCase';
-import { CreateAuctionUseCase } from '../../core/usecases/auctions/CreateAuctionUseCase';
-import { AuctionFilterParams } from '../../core/repositories/IAuctionRepository';
-import { PaginatedResult } from '../../shared/types/domain.types';
+import { Auction, AuctionStatus } from '@/core/entities/Auction';
+import { ListAuctionsUseCase } from '@/core/usecases/auctions/ListAuctionsUseCase';
+import { GetAuctionUseCase } from '@/core/usecases/auctions/GetAuctionUseCase';
+import { CreateAuctionUseCase } from '@/core/usecases/auctions/CreateAuctionUseCase';
+import { AuctionFilterParams } from '@/core/repositories/IAuctionRepository';
+import { PaginatedResult } from '@/shared/types/domain.types';
+import { useRepositories } from '@/core/contexts/RepositoryContext';
 
 export function useAuctions() {
     const [auctions, setAuctions] = useState<PaginatedResult<Auction> | null>(null);
@@ -13,11 +13,11 @@ export function useAuctions() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const repository = useMemo(() => new MockAuctionRepository(), []);
+    const { auctionRepo } = useRepositories();
 
-    const listUseCase = useMemo(() => new ListAuctionsUseCase(repository), [repository]);
-    const getUseCase = useMemo(() => new GetAuctionUseCase(repository), [repository]);
-    const createUseCase = useMemo(() => new CreateAuctionUseCase(repository), [repository]);
+    const listUseCase = useMemo(() => new ListAuctionsUseCase(auctionRepo), [auctionRepo]);
+    const getUseCase = useMemo(() => new GetAuctionUseCase(auctionRepo), [auctionRepo]);
+    const createUseCase = useMemo(() => new CreateAuctionUseCase(auctionRepo), [auctionRepo]);
 
     const fetchAuctions = useCallback(async (params: AuctionFilterParams) => {
         setIsLoading(true);

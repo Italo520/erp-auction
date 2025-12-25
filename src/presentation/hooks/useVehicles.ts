@@ -1,14 +1,14 @@
 import { useState, useCallback, useMemo } from 'react';
-import { Vehicle } from '../../core/entities/Vehicle';
-import { CreateVehicleUseCase } from '../../core/usecases/vehicles/CreateVehicleUseCase';
-import { ListVehiclesUseCase } from '../../core/usecases/vehicles/ListVehiclesUseCase';
-import { UpdateVehicleUseCase } from '../../core/usecases/vehicles/UpdateVehicleUseCase';
-import { GetVehicleUseCase } from '../../core/usecases/vehicles/GetVehicleUseCase';
-import { VehicleFilterParams } from '../../core/repositories/IVehicleRepository';
-import { PaginatedResult } from '../../shared/types/domain.types';
-import { useRepositories } from '../../core/contexts/RepositoryContext';
-import { SupabaseStorageService } from '../../infrastructure/services/SupabaseStorageService';
-import { VehicleFormData } from '../components/features/vehicles/vehicles.types';
+import { Vehicle } from '@/core/entities/Vehicle';
+import { CreateVehicleUseCase } from '@/core/usecases/vehicles/CreateVehicleUseCase';
+import { ListVehiclesUseCase } from '@/core/usecases/vehicles/ListVehiclesUseCase';
+import { UpdateVehicleUseCase } from '@/core/usecases/vehicles/UpdateVehicleUseCase';
+import { GetVehicleUseCase } from '@/core/usecases/vehicles/GetVehicleUseCase';
+import { VehicleFilterParams } from '@/core/repositories/IVehicleRepository';
+import { PaginatedResult } from '@/shared/types/domain.types';
+import { useRepositories } from '@/core/contexts/RepositoryContext';
+import { SupabaseStorageService } from '@/infrastructure/services/SupabaseStorageService';
+import { VehicleFormData } from '@/presentation/components/features/vehicles/vehicles.types';
 
 export function useVehicles() {
     const { vehicleRepo } = useRepositories();

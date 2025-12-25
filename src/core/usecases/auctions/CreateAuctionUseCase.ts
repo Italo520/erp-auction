@@ -1,5 +1,5 @@
-import { Auction } from '../../entities/Auction';
-import { IAuctionRepository } from '../../repositories/IAuctionRepository';
+import { Auction } from '@/core/entities/Auction';
+import { IAuctionRepository } from '@/core/repositories/IAuctionRepository';
 
 export class CreateAuctionUseCase {
     constructor(private auctionRepository: IAuctionRepository) { }

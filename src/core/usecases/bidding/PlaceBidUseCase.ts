@@ -1,4 +1,4 @@
-import { IBidRepository } from '../../repositories/IBidRepository';
+import { IBidRepository } from '@/core/repositories/IBidRepository';
 // import { User } from '../../entities/User'; // Assuming we have user context
 
 export class PlaceBidUseCase {

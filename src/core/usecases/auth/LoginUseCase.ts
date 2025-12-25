@@ -1,4 +1,4 @@
-import { IAuthRepository } from "../../repositories/IAuthRepository";
+import { IAuthRepository } from "@/core/repositories/IAuthRepository";
 
 export class LoginUseCase {
   constructor(private authRepo: IAuthRepository) { }

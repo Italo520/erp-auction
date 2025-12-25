@@ -1,6 +1,6 @@
-import { Auction } from '../../entities/Auction';
-import { IAuctionRepository, AuctionFilterParams } from '../../repositories/IAuctionRepository';
-import { PaginatedResult } from '../../../shared/types/domain.types';
+import { Auction } from '@/core/entities/Auction';
+import { IAuctionRepository, AuctionFilterParams } from '@/core/repositories/IAuctionRepository';
+import { PaginatedResult } from '@/shared/types/domain.types';
 
 export class ListAuctionsUseCase {
     constructor(private auctionRepository: IAuctionRepository) { }

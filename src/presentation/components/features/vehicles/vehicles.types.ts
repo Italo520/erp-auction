@@ -1,4 +1,4 @@
-import { Vehicle } from '../../../../../core/entities/Vehicle';
+import { Vehicle, VehicleStatus } from '@/core/entities/Vehicle';
 
 export interface VehicleFormData extends Partial<Omit<Vehicle, 'id' | 'createdAt' | 'updatedAt'>> {
     vehicleImageFiles?: File[]; // Arquivos físicos para upload

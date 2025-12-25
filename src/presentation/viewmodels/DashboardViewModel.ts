@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ActivityItem } from '../components/features/dashboard/dashboard.types';
+import { ActivityItem } from '@/presentation/components/features/dashboard/dashboard.types';
 
 export function useDashboardViewModel() {
     const [stats, setStats] = useState({

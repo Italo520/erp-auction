@@ -1,9 +1,9 @@
 import React from 'react';
-import { Input } from '../../ui/Input/Input';
-import { Button } from '../../ui/Button/Button';
+import { Input } from '@/presentation/components/ui/Input/Input';
+import { Button } from '@/presentation/components/ui/Button/Button';
 import { AuctionFiltersProps } from './auctions.types';
 import { Search, Filter } from 'lucide-react';
-import { AuctionStatus } from '../../../../../core/entities/Auction';
+import { AuctionStatus } from '@/core/entities/Auction';
 
 export const AuctionFilters: React.FC<AuctionFiltersProps> = ({ onSearch, onStatusFilter, currentStatus }) => {
     return (
