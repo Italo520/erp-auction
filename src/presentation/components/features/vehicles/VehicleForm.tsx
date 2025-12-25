@@ -56,9 +56,33 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({ initialData, onSubmit,
 
             <FormSection title="Fotos e Documentos" description="Adicione fotos do veículo. A primeira será a capa.">
                 <VehicleImageUpload
-                    images={formData.images?.map(img => img.url) || []}
-                    onUpload={() => { }} // TODO: Implementar upload real
-                    onRemove={() => { }}
+                    images={formData.images?.map((img: any) => img.url) || []}
+                    onUpload={(files) => {
+                        const newImageUrls = files.map(file => URL.createObjectURL(file));
+                        const currentImages = formData.images || [];
+                        const currentFiles = formData.vehicleImageFiles || [];
+
+                        // Create Image objects for preview
+                        const newImages = newImageUrls.map(url => ({
+                            id: `temp-${Date.now()}-${Math.random()}`,
+                            url,
+                            isCover: false
+                        }));
+
+                        handleChange('images', [...currentImages, ...newImages]);
+                        handleChange('vehicleImageFiles', [...currentFiles, ...files]);
+                    }}
+                    onRemove={(index) => {
+                        const currentImages = [...(formData.images || [])];
+                        const currentFiles = [...(formData.vehicleImageFiles || [])];
+
+                        currentImages.splice(index, 1);
+                        currentFiles.splice(index, 1); // Assumes index matches. Warning: if mixed with existing images this might break.
+                        // For pure creation mode (all new), this is fine. For edit, we need separate lists.
+
+                        handleChange('images', currentImages);
+                        handleChange('vehicleImageFiles', currentFiles);
+                    }}
                 />
             </FormSection>
 

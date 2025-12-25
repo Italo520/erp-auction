@@ -1,7 +1,7 @@
 import { Vehicle } from '../../../../../core/entities/Vehicle';
 
 export interface VehicleFormData extends Partial<Omit<Vehicle, 'id' | 'createdAt' | 'updatedAt'>> {
-    // Campos específicos do formulário que podem não estar direto na entidade ou precisam de tratamento
+    vehicleImageFiles?: File[]; // Arquivos físicos para upload
 }
 
 export interface VehicleFormProps {

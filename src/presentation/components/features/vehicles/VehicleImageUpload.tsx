@@ -36,11 +36,7 @@ export const VehicleImageUpload: React.FC<VehicleImageUploadProps> = ({ images, 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {images.map((url, index) => (
                     <div key={index} className="relative group aspect-video rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                        {/* Como não temos upload real, aqui url seriam strings ou blob urls */}
-                        <div className="flex items-center justify-center h-full text-slate-400">
-                            <ImageIcon size={24} />
-                            {/* <img src={url} alt={`Preview ${index}`} className="w-full h-full object-cover" /> */}
-                        </div>
+                        <img src={url} alt={`Preview ${index}`} className="w-full h-full object-cover" />
 
                         <button
                             type="button"

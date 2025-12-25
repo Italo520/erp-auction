@@ -1,26 +1,28 @@
 import { useState, useCallback, useMemo } from 'react';
 import { Vehicle } from '../../core/entities/Vehicle';
-import { MockVehicleRepository } from '../../infrastructure/repositories/MockVehicleRepository';
 import { CreateVehicleUseCase } from '../../core/usecases/vehicles/CreateVehicleUseCase';
 import { ListVehiclesUseCase } from '../../core/usecases/vehicles/ListVehiclesUseCase';
 import { UpdateVehicleUseCase } from '../../core/usecases/vehicles/UpdateVehicleUseCase';
 import { GetVehicleUseCase } from '../../core/usecases/vehicles/GetVehicleUseCase';
 import { VehicleFilterParams } from '../../core/repositories/IVehicleRepository';
 import { PaginatedResult } from '../../shared/types/domain.types';
+import { useRepositories } from '../../core/contexts/RepositoryContext';
+import { SupabaseStorageService } from '../../infrastructure/services/SupabaseStorageService';
+import { VehicleFormData } from '../components/features/vehicles/vehicles.types';
 
 export function useVehicles() {
+    const { vehicleRepo } = useRepositories();
     const [vehicles, setVehicles] = useState<PaginatedResult<Vehicle> | null>(null);
     const [currentVehicle, setCurrentVehicle] = useState<Vehicle | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Instancia dependências (em um app real, isso poderia vir de um Context ou DI Container)
-    const repository = useMemo(() => new MockVehicleRepository(), []);
+    const storageService = useMemo(() => new SupabaseStorageService(), []);
 
-    const createUseCase = useMemo(() => new CreateVehicleUseCase(repository), [repository]);
-    const listUseCase = useMemo(() => new ListVehiclesUseCase(repository), [repository]);
-    const updateUseCase = useMemo(() => new UpdateVehicleUseCase(repository), [repository]);
-    const getUseCase = useMemo(() => new GetVehicleUseCase(repository), [repository]);
+    const createUseCase = useMemo(() => new CreateVehicleUseCase(vehicleRepo), [vehicleRepo]);
+    const listUseCase = useMemo(() => new ListVehiclesUseCase(vehicleRepo), [vehicleRepo]);
+    const updateUseCase = useMemo(() => new UpdateVehicleUseCase(vehicleRepo), [vehicleRepo]);
+    const getUseCase = useMemo(() => new GetVehicleUseCase(vehicleRepo), [vehicleRepo]);
 
     const fetchVehicles = useCallback(async (params: VehicleFilterParams) => {
         setIsLoading(true);
@@ -52,12 +54,33 @@ export function useVehicles() {
         }
     }, [getUseCase]);
 
-    const createVehicle = useCallback(async (data: Omit<Vehicle, 'id' | 'createdAt' | 'updatedAt'>) => {
+    const createVehicle = useCallback(async (data: VehicleFormData & Omit<Vehicle, 'id' | 'createdAt' | 'updatedAt'>) => {
         setIsLoading(true);
         setError(null);
         try {
-            const newVehicle = await createUseCase.execute(data);
-            // Opcional: atualizar lista local
+            const uploadedImageUrls: string[] = [];
+
+            // 1. Upload images if any
+            if (data.vehicleImageFiles && data.vehicleImageFiles.length > 0) {
+                for (const file of data.vehicleImageFiles) {
+                    const result = await storageService.upload(file);
+                    uploadedImageUrls.push(result.url);
+                }
+            }
+
+            // 2. Prepare data with new URLs
+            const vehicleToCreate = {
+                ...data,
+                images: [
+                    ...(data.images || []),
+                    ...uploadedImageUrls.map(url => ({ url, isCover: false })) // Map strings to objects
+                ]
+            };
+
+            // Remove auxiliary field before sending to domain/repo
+            delete (vehicleToCreate as any).vehicleImageFiles;
+
+            const newVehicle = await createUseCase.execute(vehicleToCreate as any);
             return newVehicle;
         } catch (err) {
             setError('Erro ao criar veículo');
@@ -66,7 +89,7 @@ export function useVehicles() {
         } finally {
             setIsLoading(false);
         }
-    }, [createUseCase]);
+    }, [createUseCase, storageService]);
 
     const updateVehicle = useCallback(async (id: string, data: Partial<Vehicle>) => {
         setIsLoading(true);
