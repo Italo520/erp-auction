@@ -1,8 +1,9 @@
 import React from 'react';
-import { Card, CardHeader } from '../../ui/Card/Card';
+import { Card, CardHeader } from '@/presentation/components/ui/Card/Card';
 import { RecentActivityProps } from './dashboard.types';
 import { Activity, Gavel, User, DollarSign, Info } from 'lucide-react';
-import { cn } from '../../../../shared/utils/cn';
+import { formatDate } from '@/shared/utils/formatters';
+import { cn } from '@/shared/utils/cn';
 
 export const RecentActivity: React.FC<RecentActivityProps> = ({ activities }) => {
     const getIcon = (type: string) => {

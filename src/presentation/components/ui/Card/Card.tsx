@@ -1,15 +1,15 @@
 import React from 'react';
-import { cn } from '../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 import { CardHeaderProps, CardProps } from './Card.types';
 
 export const Card = ({ className, children, noPadding = false, ...props }: CardProps) => {
   return (
-    <div 
+    <div
       className={cn(
         "flex flex-col rounded-xl bg-white dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700/50 shadow-sm overflow-hidden",
         !noPadding && "p-5",
         className
-      )} 
+      )}
       {...props}
     >
       {children}
@@ -17,21 +17,21 @@ export const Card = ({ className, children, noPadding = false, ...props }: CardP
   );
 };
 
-export const CardHeader = ({ 
-  className, 
-  title, 
-  action, 
-  icon, 
-  iconColor = "text-primary", 
+export const CardHeader = ({
+  className,
+  title,
+  action,
+  icon,
+  iconColor = "text-primary",
   iconBgColor = "bg-primary/10",
-  ...props 
+  ...props
 }: CardHeaderProps) => {
   return (
-    <div 
+    <div
       className={cn(
-        "flex justify-between items-start mb-2", 
+        "flex justify-between items-start mb-2",
         className
-      )} 
+      )}
       {...props}
     >
       <div className="flex items-center gap-3">

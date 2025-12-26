@@ -1,6 +1,6 @@
 import React from 'react';
 import { VehicleSpecsFormProps } from './vehicles.types';
-import { FormField } from '../../forms/FormField';
+import { FormField } from '@/presentation/components/forms/FormField';
 
 const FUEL_TYPES = [
     { value: 'GASOLINE', label: 'Gasolina' },

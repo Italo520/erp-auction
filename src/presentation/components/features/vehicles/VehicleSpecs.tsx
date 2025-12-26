@@ -1,5 +1,5 @@
 import React from 'react';
-import { Vehicle } from '../../../../../core/entities/Vehicle';
+import { Vehicle } from '@/core/entities/Vehicle';
 import { Fuel, Settings, Gauge, Calendar, Hash, FileText, MapPin } from 'lucide-react';
 
 interface VehicleSpecsProps {

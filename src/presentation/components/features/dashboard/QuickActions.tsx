@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, CardHeader } from '../../ui/Card/Card';
+import { Card, CardHeader } from '@/presentation/components/ui/Card/Card';
 import { QuickActionsProps } from './dashboard.types';
 import { Zap } from 'lucide-react';
-import { Button } from '../../ui/Button/Button';
+import { Button } from '@/presentation/components/ui/Button/Button';
 
 export const QuickActions: React.FC<QuickActionsProps> = ({ actions }) => {
     return (

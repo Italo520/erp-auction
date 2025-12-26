@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card } from '../../ui/Card/Card';
+import { Card } from '@/presentation/components/ui/Card/Card';
 import { StatCardProps } from './dashboard.types';
-import { cn } from '../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 export const StatsCard: React.FC<StatCardProps> = ({

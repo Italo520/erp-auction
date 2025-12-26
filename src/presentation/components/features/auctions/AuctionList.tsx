@@ -2,7 +2,7 @@ import React from 'react';
 import { AuctionCard } from './AuctionCard';
 import { AuctionListProps } from './auctions.types';
 
-import { Skeleton } from '../../ui/Skeleton/Skeleton';
+import { Skeleton } from '@/presentation/components/ui/Skeleton/Skeleton';
 
 export const AuctionList: React.FC<AuctionListProps> = ({ auctions, isLoading, onAuctionClick }) => {
     if (isLoading) {

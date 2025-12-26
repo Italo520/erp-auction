@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { VehicleFormData, VehicleFormProps } from './vehicles.types';
-import { FormSection } from '../../forms/FormSection';
+import { FormSection } from '@/presentation/components/forms/FormSection';
+import { VehicleBasicInfo } from './VehicleBasicInfo';
 import { VehicleSpecsForm } from './VehicleSpecsForm';
 import { VehicleImageUpload } from './VehicleImageUpload';
-import { Button } from '../../ui/Button/Button';
+import { Button } from '@/presentation/components/ui/Button/Button';
+import { FormError } from '@/presentation/components/forms/FormError';
 import { Save } from 'lucide-react';
-import { FormError } from '../../forms/FormError';
 
 export const VehicleForm: React.FC<VehicleFormProps> = ({ initialData, onSubmit, isLoading }) => {
     const [formData, setFormData] = useState<VehicleFormData>(initialData || {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../ui/Button/Button';
+import { Button } from '@/presentation/components/ui/Button/Button';
 import { Edit, Trash2, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 

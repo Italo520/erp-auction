@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 import { InputProps } from './Input.types';
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -9,21 +9,21 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={cn("flex flex-col gap-2", containerClassName)}>
         {label && (
-          <label 
-            htmlFor={inputId} 
+          <label
+            htmlFor={inputId}
             className="text-[#111418] dark:text-white text-sm font-medium leading-normal"
           >
             {label}
           </label>
         )}
-        
+
         <div className="relative">
           {leftIcon && (
             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#92a4c9] pointer-events-none flex items-center justify-center">
               {leftIcon}
             </div>
           )}
-          
+
           <input
             ref={ref}
             id={inputId}

@@ -1,4 +1,4 @@
-import { Auction, AuctionStatus } from '../../../../../core/entities/Auction';
+import { Auction, AuctionStatus } from '@/core/entities/Auction';
 
 export interface AuctionCardProps {
     auction: Auction;

@@ -3,8 +3,8 @@
 import React from 'react';
 import { Bell, Search, Menu } from 'lucide-react';
 import { HeaderProps } from './Header.types';
-import { Button } from '../../ui/Button/Button';
-import { Input } from '../../ui/Input/Input';
+import { Button } from '@/presentation/components/ui/Button/Button';
+import { Input } from '@/presentation/components/ui/Input/Input';
 
 export const Header: React.FC<HeaderProps> = ({ title, actions }) => {
     return (

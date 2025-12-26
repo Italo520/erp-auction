@@ -1,16 +1,16 @@
 import React from 'react';
-import { cn } from '../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 import { BadgeProps } from './Badge.types';
 
-export const Badge = ({ 
-  className, 
-  variant = 'neutral', 
-  children, 
-  icon, 
+export const Badge = ({
+  className,
+  variant = 'neutral',
+  children,
+  icon,
   pulse = false,
-  ...props 
+  ...props
 }: BadgeProps) => {
-  
+
   const variants = {
     success: "bg-emerald-500/10 text-emerald-500 ring-emerald-500/20",
     warning: "bg-yellow-500/10 text-yellow-500 ring-yellow-500/20",
@@ -30,12 +30,12 @@ export const Badge = ({
   };
 
   return (
-    <span 
+    <span
       className={cn(
         "inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-bold ring-1 ring-inset",
         variants[variant],
         className
-      )} 
+      )}
       {...props}
     >
       {pulse && (

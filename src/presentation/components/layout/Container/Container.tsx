@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from '../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 
 interface ContainerProps {
     children: React.ReactNode;

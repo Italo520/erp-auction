@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { cn } from '../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 import { SidebarItemProps } from './Sidebar.types';
 
 export const SidebarItem: React.FC<SidebarItemProps> = ({ icon, label, href }) => {

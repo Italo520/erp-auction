@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoginFormProps, LoginFormData, LoginFormErrors } from './LoginForm.types';
-import { isValidEmail, isValidPassword } from '../../../../shared/utils/validators';
-import { Input } from '../../ui/Input/Input';
-import { Button } from '../../ui/Button/Button';
-import { Card } from '../../ui/Card/Card';
+import { isValidEmail, isValidPassword } from '@/shared/utils/validators';
+import { Input } from '@/presentation/components/ui/Input/Input';
+import { Button } from '@/presentation/components/ui/Button/Button';
+import { Card } from '@/presentation/components/ui/Card/Card';
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading = false }) => {
     const router = useRouter();

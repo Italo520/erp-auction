@@ -1,21 +1,21 @@
 import React from 'react';
-import { cn } from '../../../../shared/utils/cn';
+import { cn } from '@/shared/utils/cn';
 import { ButtonProps } from './Button.types';
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ 
-    className, 
-    variant = 'primary', 
-    size = 'md', 
-    isLoading = false, 
-    leftIcon, 
-    rightIcon, 
-    children, 
-    disabled, 
+  ({
+    className,
+    variant = 'primary',
+    size = 'md',
+    isLoading = false,
+    leftIcon,
+    rightIcon,
+    children,
+    disabled,
     fullWidth = false,
-    ...props 
+    ...props
   }, ref) => {
-    
+
     const variants = {
       primary: "bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 border-transparent",
       secondary: "bg-white dark:bg-[#111722] border-slate-200 dark:border-[#324467] text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-[#232f48]",
