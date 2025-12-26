@@ -1,5 +1,5 @@
-import { Auction, AuctionStatus } from "../entities/Auction";
-import { PaginatedResult, PaginationParams } from "../../shared/types/domain.types";
+import { Auction, AuctionStatus } from "@/core/entities/Auction";
+import { PaginatedResult, PaginationParams } from "@/shared/types/domain.types";
 
 export interface AuctionFilterParams extends PaginationParams {
   status?: AuctionStatus;
@@ -13,7 +13,7 @@ export interface IAuctionRepository {
   findAll(params: AuctionFilterParams): Promise<PaginatedResult<Auction>>;
   update(id: string, data: Partial<Auction>): Promise<Auction>;
   delete(id: string): Promise<void>;
-  
+
   // Métodos específicos de negócio
   findActiveAuctions(): Promise<Auction[]>;
 }

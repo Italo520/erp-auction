@@ -1,4 +1,4 @@
-import { User } from "../entities/User";
+import { User } from "@/core/entities/User";
 
 export interface IAuthRepository {
   signIn(email: string, password?: string): Promise<void>; // Magic Link ou Senha

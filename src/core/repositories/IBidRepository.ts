@@ -1,4 +1,4 @@
-import { Bid } from "../entities/Bid";
+import { Bid } from "@/core/entities/Bid";
 
 export interface IBidRepository {
   create(bid: Omit<Bid, 'id' | 'timestamp'>): Promise<Bid>;
