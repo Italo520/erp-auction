@@ -1,6 +1,6 @@
-import { IVehicleRepository, VehicleFilterParams } from "../../core/repositories/IVehicleRepository";
-import { Vehicle } from "../../core/entities/Vehicle";
-import { PaginatedResult } from "../../shared/types/domain.types";
+import { IVehicleRepository, VehicleFilterParams } from "@/core/repositories/IVehicleRepository";
+import { Vehicle } from "@/core/entities/Vehicle";
+import { PaginatedResult } from "@/shared/types/domain.types";
 
 const MOCK_VEHICLES: Vehicle[] = [
   {
@@ -82,20 +82,20 @@ export class MockVehicleRepository implements IVehicleRepository {
     }
 
     if (params.search) {
-       const q = params.search.toLowerCase();
-       filtered = filtered.filter(v => 
-         v.model.toLowerCase().includes(q) || 
-         v.make.toLowerCase().includes(q) ||
-         v.lotNumber?.includes(q)
-       );
+      const q = params.search.toLowerCase();
+      filtered = filtered.filter(v =>
+        v.model.toLowerCase().includes(q) ||
+        v.make.toLowerCase().includes(q) ||
+        v.lotNumber?.includes(q)
+      );
     }
 
     return {
       data: filtered,
       total: filtered.length,
       page: params.page,
-      perPage: params.perPage,
-      totalPages: Math.ceil(filtered.length / params.perPage)
+      limit: params.limit,
+      totalPages: Math.ceil(filtered.length / params.limit)
     };
   }
 
