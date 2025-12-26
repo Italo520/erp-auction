@@ -10,22 +10,28 @@ export enum AuctionStatus {
 
 export interface Auction {
   id: string;
-  title: string;
+
+  // Alterado de 'title' para 'name' para bater com o banco e repositório
+  name: string;
   description?: string;
   status: AuctionStatus;
-  
-  scheduledStartTime: Date;
-  actualStartTime?: Date;
-  endTime?: Date;
-  
+
+  // Alterado de 'scheduledStartTime' para 'startDateTime'
+  startDateTime: Date;
+
+  // Alterado de 'endTime?' para 'endDateTime' (obrigatório para lógica de validação)
+  endDateTime: Date;
+
+  termsConditions?: string;
   location?: string; // Online, Presencial ou Híbrido
-  
+
   itemsCount?: number;
   totalEstimatedValue?: number;
-  
-  // Relacionamentos (Opcional no carregamento da lista)
+
+  // Relacionamentos
+  items?: any[];
   vehicles?: Vehicle[];
-  
+
   createdAt: Date;
   updatedAt: Date;
 }
