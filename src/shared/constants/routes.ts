@@ -4,10 +4,10 @@ export const APP_ROUTES = {
   },
   private: {
     DASHBOARD: '/dashboard',
-    AUCTIONS: '/auctions',
-    VEHICLE_NEW: '/vehicle/new',
-    VEHICLE_DETAILS: (id: string) => `/vehicle/${id}`,
+    AUCTIONS: '/leiloes',
+    VEHICLE_NEW: '/veiculos/novo',
+    VEHICLE_DETAILS: (id: string) => `/veiculos/${id}`,
     LIVE_BIDDING: (id: string) => `/live/${id}`,
-    SETTINGS: '/settings',
+    SETTINGS: '/configuracoes',
   }
 } as const;

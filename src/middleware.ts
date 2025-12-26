@@ -66,7 +66,7 @@ export async function middleware(request: NextRequest) {
     if (!user && !isLoginPage && !isPublicResource) {
         // Redireciona para login se tentar acessar área protegida
         // Protegendo rotas principais
-        if (request.nextUrl.pathname === '/' || request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/auctions') || request.nextUrl.pathname.startsWith('/vehicles')) {
+        if (request.nextUrl.pathname === '/' || request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/leiloes') || request.nextUrl.pathname.startsWith('/veiculos') || request.nextUrl.pathname.startsWith('/usuarios') || request.nextUrl.pathname.startsWith('/configuracoes')) {
             return NextResponse.redirect(new URL('/login', request.url));
         }
     }
