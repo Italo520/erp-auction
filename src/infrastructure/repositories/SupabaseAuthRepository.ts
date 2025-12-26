@@ -1,6 +1,6 @@
-import { IAuthRepository } from '../../core/repositories/IAuthRepository';
-import { User } from '../../core/entities/User';
-import { supabase } from '../api/supabaseClient';
+import { IAuthRepository } from '@/core/repositories/IAuthRepository';
+import { User } from '@/core/entities/User';
+import { supabase } from '@/infrastructure/api/supabaseClient';
 
 export class SupabaseAuthRepository implements IAuthRepository {
     async signIn(email: string, password?: string): Promise<void> {
@@ -33,7 +33,8 @@ export class SupabaseAuthRepository implements IAuthRepository {
                 id: data.user.id,
                 email: data.user.email!,
                 name: data.user.user_metadata?.name || 'User',
-                role: data.user.user_metadata?.role || 'USER',
+                role: data.user.user_metadata?.role || 'BIDDER',
+                isActive: data.user.user_metadata?.isActive ?? true,
                 createdAt: new Date(data.user.created_at),
                 updatedAt: new Date(data.user.updated_at || data.user.created_at)
             };
@@ -56,7 +57,8 @@ export class SupabaseAuthRepository implements IAuthRepository {
             id: user.id,
             email: user.email!,
             name: user.user_metadata?.name || 'User',
-            role: user.user_metadata?.role || 'USER',
+            role: user.user_metadata?.role || 'BIDDER',
+            isActive: user.user_metadata?.isActive ?? true,
             createdAt: new Date(user.created_at),
             updatedAt: new Date(user.updated_at || user.created_at)
         };
