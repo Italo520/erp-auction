@@ -1,5 +1,5 @@
 import { ApiError } from './ApiError';
-import { ApiRequestOptions, ApiResponse } from '../../shared/types/api.types';
+import { ApiRequestOptions, ApiResponse } from '@/shared/types/api.types';
 
 const BASE_url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
@@ -31,7 +31,7 @@ export class HttpClient {
       const responseData: ApiResponse<T> = await response.json();
 
       if (!responseData.success && responseData.error) {
-         throw new ApiError(responseData.error.message, responseData.error.code, response.status, responseData.error.details);
+        throw new ApiError(responseData.error.message, responseData.error.code, response.status, responseData.error.details);
       }
 
       return responseData.data as T;

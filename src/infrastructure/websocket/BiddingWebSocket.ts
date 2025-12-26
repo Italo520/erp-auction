@@ -1,5 +1,5 @@
 import { webSocketManager } from './WebSocketManager';
-import { BiddingEvent } from '../../presentation/components/features/bidding/bidding.types';
+import { BiddingEvent } from '@/presentation/components/features/bidding/bidding.types';
 
 export class BiddingWebSocket {
     constructor(private auctionId: string) { }

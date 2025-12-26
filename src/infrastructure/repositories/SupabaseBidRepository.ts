@@ -1,6 +1,6 @@
-import { IBidRepository } from '../../core/repositories/IBidRepository';
-import { Bid } from '../../core/entities/Bid';
-import { supabase } from '../api/supabaseClient';
+import { IBidRepository } from '@/core/repositories/IBidRepository';
+import { Bid } from '@/core/entities/Bid';
+import { supabase } from '@/infrastructure/api/supabaseClient';
 
 export class SupabaseBidRepository implements IBidRepository {
 

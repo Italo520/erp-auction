@@ -1,7 +1,7 @@
-import { IVehicleRepository, VehicleFilterParams } from '../../core/repositories/IVehicleRepository';
-import { Vehicle } from '../../core/entities/Vehicle';
-import { PaginatedResult } from '../../shared/types/domain.types';
-import { supabase } from '../api/supabaseClient';
+import { IVehicleRepository, VehicleFilterParams } from '@/core/repositories/IVehicleRepository';
+import { Vehicle } from '@/core/entities/Vehicle';
+import { PaginatedResult } from '@/shared/types/domain.types';
+import { supabase } from '@/infrastructure/api/supabaseClient';
 
 export class SupabaseVehicleRepository implements IVehicleRepository {
 

@@ -1,4 +1,4 @@
-import { supabase } from '../api/supabaseClient';
+import { supabase } from '@/infrastructure/api/supabaseClient';
 
 export interface UploadResult {
     path: string;

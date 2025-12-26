@@ -1,7 +1,7 @@
-import { IAuctionRepository, AuctionFilterParams } from '../../core/repositories/IAuctionRepository';
-import { Auction } from '../../core/entities/Auction';
-import { PaginatedResult } from '../../shared/types/domain.types';
-import { supabase } from '../api/supabaseClient';
+import { IAuctionRepository, AuctionFilterParams } from '@/core/repositories/IAuctionRepository';
+import { Auction } from '@/core/entities/Auction';
+import { PaginatedResult } from '@/shared/types/domain.types';
+import { supabase } from '@/infrastructure/api/supabaseClient';
 
 export class SupabaseAuctionRepository implements IAuctionRepository {
 

@@ -1,5 +1,5 @@
-import { IBidRepository } from "../../core/repositories/IBidRepository";
-import { Bid } from "../../core/entities/Bid";
+import { IBidRepository } from "@/core/repositories/IBidRepository";
+import { Bid } from "@/core/entities/Bid";
 
 const MOCK_BIDS: Bid[] = [
   {

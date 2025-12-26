@@ -1,4 +1,4 @@
-import { BiddingEvent, BiddingListener } from '../../presentation/components/features/bidding/bidding.types';
+import { BiddingEvent, BiddingListener } from '@/presentation/components/features/bidding/bidding.types';
 
 export class WebSocketManager {
     private listeners: Map<string, BiddingListener[]> = new Map();
