@@ -91,10 +91,32 @@ export class MockBidRepository implements IBidRepository {
 
   subscribeToAuctionBids(auctionId: string, callback: (bid: Bid) => void): () => void {
     console.log(`[MockRealtime] Subscribed to bids for auction ${auctionId}`);
-    // Reuse similar logic or simplified for mock
+
     const interval = setInterval(() => {
-      // Emit logic could go here
-    }, 20000);
-    return () => clearInterval(interval);
+      const shouldEmit = Math.random() > 0.5;
+      if (shouldEmit) {
+        // Lógica simulada
+        const nextAmount = 50000 + Math.floor(Math.random() * 10000);
+
+        const newBid: Bid = {
+          id: `bid-auto-${Date.now()}`,
+          auctionId: auctionId, // Usando o ID correto
+          vehicleId: 'vehicle-mock',
+          userId: 'user-random-' + Math.floor(Math.random() * 100),
+          amount: nextAmount,
+          timestamp: new Date(),
+          channel: 'WEB',
+          isCancelled: false,
+        };
+
+        MOCK_BIDS.unshift(newBid);
+        callback(newBid);
+      }
+    }, 5000); // 5s para ficar mais visível no teste
+
+    return () => {
+      console.log(`[MockRealtime] Unsubscribed from auction ${auctionId}`);
+      clearInterval(interval);
+    };
   }
 }

@@ -13,8 +13,8 @@ const MOCK_USER: User = {
 };
 
 export class MockAuthRepository implements IAuthRepository {
-  async signIn(email: string): Promise<void> {
-    console.log(`[MockAuth] SignIn requested for ${email}`);
+  async signIn(email: string, password?: string): Promise<void> {
+    console.log(`[MockAuth] SignIn requested for ${email} with pass ${password ? '***' : 'OTP'}`);
     // Simula delay de rede
     await new Promise(resolve => setTimeout(resolve, 500));
 
