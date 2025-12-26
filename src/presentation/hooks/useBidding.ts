@@ -37,7 +37,7 @@ export function useBidding(auctionId: string) {
                     nextMinimumBid: (newBid.amount > prev.currentBid ? newBid.amount : prev.currentBid) + 100, // Ajuste lógico simples
                     lastBidderId: newBid.userId,
                     lastBidderName: `User ${newBid.userId.slice(0, 4)}`, // Mock name logic if not in bid
-                    bids: [newBid, ...prev.bids]
+                    bids: [{ ...newBid, userName: `User ${newBid.userId.slice(0, 4)}` }, ...prev.bids]
                 };
             });
         });
