@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { VehicleFormData, VehicleFormProps } from './vehicles.types';
 import { FormSection } from '@/presentation/components/forms/FormSection';
-import { VehicleBasicInfo } from './VehicleBasicInfo';
 import { VehicleSpecsForm } from './VehicleSpecsForm';
 import { VehicleImageUpload } from './VehicleImageUpload';
 import { Button } from '@/presentation/components/ui/Button/Button';
