@@ -9,21 +9,23 @@ import { AuctionCardProps } from './auctions.types';
 export const AuctionCard: React.FC<AuctionCardProps> = ({ auction, onClick }) => {
     const getStatusColor = (status: string) => {
         switch (status) {
-            case 'OPEN': return "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400";
-            case 'Closed': return "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400";
-            case 'DRAFT': return "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400";
-            default: return "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400";
+            case 'ACTIVE': return "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400";
+            case 'FINISHED': return "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400";
+            case 'SCHEDULED': return "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400";
+            case 'PAUSED': return "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400";
+            case 'CANCELLED': return "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400";
+            default: return "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400";
         }
     };
 
     const getStatusLabel = (status: string) => {
         // Mapeamento simples, idealmente viria de um arquivo de constantes/i18n
         const map: Record<string, string> = {
-            'OPEN': 'Aberto',
-            'CLOSED': 'Fechado',
-            'DRAFT': 'Rascunho',
+            'ACTIVE': 'Aberto',
+            'FINISHED': 'Encerrado',
             'SCHEDULED': 'Agendado',
-            'PAUSED': 'Pausado'
+            'PAUSED': 'Pausado',
+            'CANCELLED': 'Cancelado'
         };
         return map[status] || status;
     }

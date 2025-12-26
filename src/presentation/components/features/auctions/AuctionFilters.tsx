@@ -24,22 +24,22 @@ export const AuctionFilters: React.FC<AuctionFiltersProps> = ({ onSearch, onStat
                     Todos
                 </Button>
                 <Button
-                    variant={currentStatus === 'OPEN' ? 'primary' : 'outline'}
-                    onClick={() => onStatusFilter('OPEN')}
+                    variant={currentStatus === AuctionStatus.ACTIVE ? 'primary' : 'outline'}
+                    onClick={() => onStatusFilter(AuctionStatus.ACTIVE)}
                     className="whitespace-nowrap"
                 >
                     Abertos
                 </Button>
                 <Button
-                    variant={currentStatus === 'SCHEDULED' ? 'primary' : 'outline'}
-                    onClick={() => onStatusFilter('SCHEDULED')}
+                    variant={currentStatus === AuctionStatus.SCHEDULED ? 'primary' : 'outline'}
+                    onClick={() => onStatusFilter(AuctionStatus.SCHEDULED)}
                     className="whitespace-nowrap"
                 >
                     Agendados
                 </Button>
                 <Button
-                    variant={currentStatus === 'CLOSED' ? 'primary' : 'outline'}
-                    onClick={() => onStatusFilter('CLOSED')}
+                    variant={currentStatus === AuctionStatus.FINISHED ? 'primary' : 'outline'}
+                    onClick={() => onStatusFilter(AuctionStatus.FINISHED)}
                     className="whitespace-nowrap"
                 >
                     Encerrados
