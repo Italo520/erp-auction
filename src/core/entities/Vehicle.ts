@@ -13,37 +13,39 @@ export interface Vehicle {
   id: string;
   auctionId?: string; // Vinculado a qual leilão
   lotNumber?: string; // Número do lote
-  
+
   // Informações Básicas
   make: string;      // Marca (Toyota)
   model: string;     // Modelo (Corolla)
   version: string;   // Versão (XEi 2.0)
   yearManufacture: number;
   yearModel: number;
-  
+
   // Detalhes Técnicos
   color: string;
   fuel: FuelType;
   transmission: TransmissionType;
   mileage: number;
+  doors?: number;    // CORREÇÃO: Campo adicionado
   engineNumber?: string;
   chassisNumber: string; // VIN
+  renavam?: string;  // CORREÇÃO: Campo adicionado (usado no repositório)
   plateEnd?: string; // Final da placa
-  
+
   // Estado e Financeiro
   status: VehicleStatus;
   initialBid: number;
   minimumIncrement: number;
   currentBid?: number;
-  
+
   // Mídia
   images: VehicleImage[];
-  
+
   // Metadados
   description?: string;
   locationCity?: string;
   locationState?: string;
-  
+
   createdAt: Date;
   updatedAt: Date;
 }
