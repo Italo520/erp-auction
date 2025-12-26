@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/presentation/hooks/useAuth';
+import { toast } from 'sonner';
 
 export default function LoginPage() {
     const router = useRouter();
@@ -15,14 +16,20 @@ export default function LoginPage() {
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
+        console.log('Login attempt started');
         setError('');
         setIsLoading(true);
 
         try {
             await login(email, password);
+            console.log('Login successful');
+            toast.success('Login realizado com sucesso!');
             router.push('/dashboard');
         } catch (err: any) {
-            setError(err.message || 'Erro ao fazer login');
+            console.error('Login error:', err);
+            const errorMessage = err.message || 'Erro ao fazer login';
+            setError(errorMessage);
+            toast.error(errorMessage);
         } finally {
             setIsLoading(false);
         }
@@ -79,10 +86,11 @@ export default function LoginPage() {
 
                         <div className="px-6 md:px-8 pt-6">
                             <div className="flex border-b border-[#e5e7eb] dark:border-[#324467] gap-8">
-                                <button className="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary pb-[13px] px-2 cursor-pointer transition-colors">
+                                <button type="button" className="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary pb-[13px] px-2 cursor-pointer transition-colors">
                                     <p className="text-sm font-bold leading-normal tracking-[0.015em]">Entrar</p>
                                 </button>
                                 <button
+                                    type="button"
                                     onClick={() => router.push('/register')}
                                     className="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#637588] dark:text-[#92a4c9] hover:text-[#111418] dark:hover:text-white pb-[13px] px-2 cursor-pointer transition-colors"
                                 >
