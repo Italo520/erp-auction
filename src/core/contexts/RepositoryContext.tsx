@@ -27,7 +27,10 @@ const RepositoryContext = createContext<RepositoryContextData>({} as RepositoryC
 
 export const RepositoryProvider = ({ children }: { children: React.ReactNode }) => {
   // Use environment variable to toggle mocks (default to false if not set)
-  const useMock = process.env.NEXT_PUBLIC_USE_MOCK === 'true';
+  // Also fallback to mocks if Supabase credentials are missing
+  const useMock = process.env.NEXT_PUBLIC_USE_MOCK === 'true' ||
+    !process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   const repositories = useMemo(() => {
     if (useMock) {

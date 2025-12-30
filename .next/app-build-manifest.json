@@ -1,203 +1,50 @@
 {
   "pages": {
-    "/_not-found/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/app/_not-found/page-d2fed87ffe7e1669.js"
-    ],
-    "/api/auctions/[id]/status/route": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/app/api/auctions/[id]/status/route-270013684b838ced.js"
-    ],
-    "/api/auctions/[id]/vehicles/[vehicleId]/route": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/app/api/auctions/[id]/vehicles/[vehicleId]/route-270013684b838ced.js"
-    ],
-    "/api/auctions/[id]/vehicles/route": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/app/api/auctions/[id]/vehicles/route-270013684b838ced.js"
-    ],
-    "/api/bids/route": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/app/api/bids/route-270013684b838ced.js"
-    ],
-    "/api/bids/[auctionId]/route": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/app/api/bids/[auctionId]/route-270013684b838ced.js"
-    ],
-    "/api/vehicles/available/route": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/app/api/vehicles/available/route-270013684b838ced.js"
-    ],
     "/layout": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/css/ba356ae93e000b1f.css",
-      "static/chunks/417-886eef6c8209f0f7.js",
-      "static/chunks/720-8d5292a2a76a19bb.js",
-      "static/chunks/334-b64c523ce700031b.js",
-      "static/chunks/app/layout-04cfb4494b9a5c28.js"
-    ],
-    "/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/app/page-99b34270aedfe602.js"
-    ],
-    "/(dashboard)/layout": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/app/(dashboard)/layout-5761ab2c11c2ebb2.js"
-    ],
-    "/(dashboard)/dashboard/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/app/(dashboard)/dashboard/page-7df518284a08f621.js"
-    ],
-    "/(dashboard)/configuracoes/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/app/(dashboard)/configuracoes/page-7eb9a6ef261e21c4.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
     ],
     "/(auth)/layout": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/app/(auth)/layout-270013684b838ced.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(auth)/layout.js"
     ],
     "/(auth)/login/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/417-886eef6c8209f0f7.js",
-      "static/chunks/720-8d5292a2a76a19bb.js",
-      "static/chunks/334-b64c523ce700031b.js",
-      "static/chunks/app/(auth)/login/page-466b3ba9455a4f2f.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(auth)/login/page.js"
     ],
-    "/(dashboard)/leiloes/novo/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/app/(dashboard)/leiloes/novo/page-7cf146a11bc2a905.js"
+    "/(dashboard)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/layout.js"
     ],
-    "/(dashboard)/usuarios/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/app/(dashboard)/usuarios/page-1f81aaef8f1ac242.js"
-    ],
-    "/(dashboard)/live/[id]/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/417-886eef6c8209f0f7.js",
-      "static/chunks/720-8d5292a2a76a19bb.js",
-      "static/chunks/334-b64c523ce700031b.js",
-      "static/chunks/969-699f6be053181104.js",
-      "static/chunks/app/(dashboard)/live/[id]/page-f489b7616cd01c73.js"
-    ],
-    "/(dashboard)/leiloes/[id]/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/720-8d5292a2a76a19bb.js",
-      "static/chunks/app/(dashboard)/leiloes/[id]/page-b32d6a886bef62fb.js"
-    ],
-    "/(dashboard)/relatorios/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/app/(dashboard)/relatorios/page-e64d58ea361ebd97.js"
-    ],
-    "/(dashboard)/veiculos/novo/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/417-886eef6c8209f0f7.js",
-      "static/chunks/720-8d5292a2a76a19bb.js",
-      "static/chunks/334-b64c523ce700031b.js",
-      "static/chunks/627-1a39a64cbd472b30.js",
-      "static/chunks/app/(dashboard)/veiculos/novo/page-9f363cce39d91bde.js"
-    ],
-    "/(dashboard)/veiculos/[id]/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/417-886eef6c8209f0f7.js",
-      "static/chunks/334-b64c523ce700031b.js",
-      "static/chunks/969-699f6be053181104.js",
-      "static/chunks/app/(dashboard)/veiculos/[id]/page-30af8445fdfae5fa.js"
-    ],
-    "/(dashboard)/veiculos/[id]/edit/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/417-886eef6c8209f0f7.js",
-      "static/chunks/720-8d5292a2a76a19bb.js",
-      "static/chunks/334-b64c523ce700031b.js",
-      "static/chunks/627-1a39a64cbd472b30.js",
-      "static/chunks/app/(dashboard)/veiculos/[id]/edit/page-ee2a2fa7b1a8ead5.js"
+    "/(dashboard)/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/dashboard/page.js"
     ],
     "/(dashboard)/leiloes/page": [
-      "static/chunks/webpack-06f80c31a7f19bc4.js",
-      "static/chunks/4bd1b696-c023c6e3521b1417.js",
-      "static/chunks/255-cb395327542b56ef.js",
-      "static/chunks/main-app-bf3b2c93eb99535b.js",
-      "static/chunks/779-6e857888ef51af04.js",
-      "static/chunks/417-886eef6c8209f0f7.js",
-      "static/chunks/720-8d5292a2a76a19bb.js",
-      "static/chunks/334-b64c523ce700031b.js",
-      "static/chunks/app/(dashboard)/leiloes/page-e5c3131c1f635892.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/leiloes/page.js"
+    ],
+    "/(dashboard)/leiloes/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(dashboard)/leiloes/[id]/page.js"
+    ],
+    "/api/vehicles/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/vehicles/route.js"
+    ],
+    "/api/vehicles/available/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/vehicles/available/route.js"
     ]
   }
 }

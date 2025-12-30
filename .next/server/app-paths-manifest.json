@@ -1,22 +1,8 @@
 {
-  "/api/auctions/[id]/status/route": "app/api/auctions/[id]/status/route.js",
-  "/api/auctions/[id]/vehicles/[vehicleId]/route": "app/api/auctions/[id]/vehicles/[vehicleId]/route.js",
-  "/api/auctions/[id]/vehicles/route": "app/api/auctions/[id]/vehicles/route.js",
-  "/api/bids/route": "app/api/bids/route.js",
-  "/api/bids/[auctionId]/route": "app/api/bids/[auctionId]/route.js",
+  "/api/vehicles/route": "app/api/vehicles/route.js",
   "/api/vehicles/available/route": "app/api/vehicles/available/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/configuracoes/page": "app/(dashboard)/configuracoes/page.js",
   "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(dashboard)/leiloes/novo/page": "app/(dashboard)/leiloes/novo/page.js",
-  "/(dashboard)/usuarios/page": "app/(dashboard)/usuarios/page.js",
-  "/(dashboard)/live/[id]/page": "app/(dashboard)/live/[id]/page.js",
-  "/(dashboard)/leiloes/[id]/page": "app/(dashboard)/leiloes/[id]/page.js",
-  "/(dashboard)/relatorios/page": "app/(dashboard)/relatorios/page.js",
-  "/(dashboard)/veiculos/novo/page": "app/(dashboard)/veiculos/novo/page.js",
-  "/(dashboard)/veiculos/[id]/page": "app/(dashboard)/veiculos/[id]/page.js",
-  "/(dashboard)/veiculos/[id]/edit/page": "app/(dashboard)/veiculos/[id]/edit/page.js",
-  "/(dashboard)/leiloes/page": "app/(dashboard)/leiloes/page.js"
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/(dashboard)/leiloes/page": "app/(dashboard)/leiloes/page.js",
+  "/(dashboard)/leiloes/[id]/page": "app/(dashboard)/leiloes/[id]/page.js"
 }

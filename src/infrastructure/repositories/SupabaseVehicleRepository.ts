@@ -88,6 +88,7 @@ export class SupabaseVehicleRepository implements IVehicleRepository {
             .select('*, vehicle_images(*)', { count: 'exact' });
 
         if (params.status) query = query.eq('status', params.status);
+        if (params.auctionId) query = query.eq('auction_id', params.auctionId);
         if (params.make) query = query.ilike('make', `%${params.make}%`);
         if (params.model) query = query.ilike('model', `%${params.model}%`);
         if (params.search) {
