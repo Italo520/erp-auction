@@ -1,33 +1,33 @@
 'use client';
 
 import React from 'react';
-import { Container } from '../../../../presentation/components/layout/Container/Container';
-import { VehicleForm } from '../../../../presentation/components/features/vehicles/VehicleForm';
-import { useVehicles } from '../../../../presentation/hooks/useVehicles';
+import { Container } from '@/presentation/components/layout/Container/Container';
+import { VehicleForm } from '@/presentation/components/features/vehicles/VehicleForm';
+import { useVehicles } from '@/presentation/hooks/useVehicles';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
-import { Button } from '../../../../presentation/components/ui/Button/Button';
+import { Button } from '@/presentation/components/ui/Button/Button';
+import { toast } from 'sonner';
+import { VehicleFormData } from '@/presentation/components/features/vehicles/vehicles.types';
 
 export default function NewVehiclePage() {
     const router = useRouter();
     const { createVehicle, isLoading } = useVehicles();
 
-    const handleSubmit = async (data: any) => {
+    const handleSubmit = async (data: VehicleFormData) => {
         try {
             await createVehicle({
                 ...data,
                 status: 'DRAFT',
                 initialBid: 0,
                 minimumIncrement: 0,
-                images: [], // Tratado no mock por enquanto
-                createdAt: new Date(),
-                updatedAt: new Date()
-            });
-            alert("Veículo criado com sucesso!"); // Feedback simples
-            router.push('/dashboard'); // ou para lista de veículos quando existir
+            } as any);
+
+            toast.success('Veículo criado com sucesso!');
+            router.push('/veiculos');
         } catch (error) {
-            console.error("Erro ao criar:", error);
-            alert("Erro ao criar veículo.");
+            console.error('Erro ao criar veículo:', error);
+            toast.error('Erro ao criar veículo. Tente novamente.');
         }
     };
 
