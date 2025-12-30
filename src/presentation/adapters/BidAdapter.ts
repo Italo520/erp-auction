@@ -2,7 +2,7 @@ import { Bid as CoreBid } from '@/core/entities/Bid';
 import { Bid as PresentationBid } from '@/presentation/components/features/bidding/bidding.types';
 
 export class BidAdapter {
-    static toCoreArray(bids: PresentationBid[]): CoreBid[] {
+    static toCoreArray(bids: PresentationBid[], vehicleId: string = ''): CoreBid[] {
         return bids.map(bid => ({
             id: bid.id,
             auctionId: bid.auctionId,
@@ -10,7 +10,7 @@ export class BidAdapter {
             amount: bid.amount,
             timestamp: bid.timestamp,
             // Campos obrigatórios no Core que não existem no Presentation
-            vehicleId: '', // Será preenchido pelo contexto se necessário
+            vehicleId: vehicleId,
             channel: 'WEB' as const,
             isCancelled: false
         }));

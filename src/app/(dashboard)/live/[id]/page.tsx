@@ -29,16 +29,16 @@ export default function LiveBiddingPage({ params }: LivePageProps) {
     const { id } = use(params);
     const { state: biddingState, connectionStatus, placeBid } = useBidding(id);
 
-    // Hooks de Realtime
-    const { bids: realtimeBids, isConnected: bidsConnected } = useRealtimeBids(id, BidAdapter.toCoreArray(biddingState?.bids || []));
-    const { status: auctionStatus, isActive, isConnected: statusConnected } = useRealtimeAuctionStatus(id, AuctionStatus.ACTIVE);
-
-    // Como não temos endpoint real que cruza vehicle-auction ainda, vou usar um mock de vehicleId ou buscar o veículo
-    // que o leilão se refere. Para simplificar o mock, vou pegar um veículo fixo ou buscar se tivesse ID.
-    // Vou usar o hook useVehicles só para mostrar algo, assumindo que conseguimos o ID do carro.
-    // Num cenário real, GetLiveBiddingUseCase retornaria detalhes do item leiloado também.
-
     const { currentVehicle, getVehicle } = useVehicles();
+
+    // Hooks de Realtime
+    const initialCoreBids = React.useMemo(
+        () => BidAdapter.toCoreArray(biddingState?.bids || [], currentVehicle?.id || 'mock-vehicle-id'),
+        [biddingState?.bids, currentVehicle?.id]
+    );
+
+    const { bids: realtimeBids, isConnected: bidsConnected } = useRealtimeBids(id, initialCoreBids);
+    const { status: auctionStatus, isActive, isConnected: statusConnected } = useRealtimeAuctionStatus(id, AuctionStatus.ACTIVE);
 
     React.useEffect(() => {
         // Mock: buscando um veículo qualquer para ilustrar, ja que o bidding state só tem números
