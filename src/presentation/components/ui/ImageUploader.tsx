@@ -1,7 +1,6 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { Upload, X, FileImage, AlertCircle, CheckCircle2, Trash2 } from 'lucide-react';
+import React, { useState, useRef, useCallback } from 'react';
+import { Upload, X, FileImage, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/shared/utils/cn';
-import { Button } from '@/presentation/components/ui/Button/Button';
 
 export interface ImageUploaderProps {
     onUpload: (file: File) => Promise<string>;
