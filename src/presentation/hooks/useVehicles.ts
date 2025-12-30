@@ -7,7 +7,7 @@ import { GetVehicleUseCase } from '@/core/usecases/vehicles/GetVehicleUseCase';
 import { VehicleFilterParams } from '@/core/repositories/IVehicleRepository';
 import { PaginatedResult } from '@/shared/types/domain.types';
 import { useRepositories } from '@/core/contexts/RepositoryContext';
-import { SupabaseStorageService } from '@/infrastructure/services/SupabaseStorageService';
+import { SupabaseStorageService } from '@/infrastructure/storage/SupabaseStorageService';
 import { VehicleFormData } from '@/presentation/components/features/vehicles/vehicles.types';
 
 export function useVehicles() {
@@ -58,30 +58,34 @@ export function useVehicles() {
         setIsLoading(true);
         setError(null);
         try {
-            const uploadedImageUrls: string[] = [];
+            // 1. Separate files from data
+            const { vehicleImageFiles, ...vehicleData } = data as any;
 
-            // 1. Upload images if any
-            if (data.vehicleImageFiles && data.vehicleImageFiles.length > 0) {
-                for (const file of data.vehicleImageFiles) {
-                    const result = await storageService.upload(file);
-                    uploadedImageUrls.push(result.url);
+            // 2. Create vehicle first to get ID
+            const newVehicle = await createUseCase.execute(vehicleData);
+
+            // 3. Upload images using the new ID
+            const uploadedImageUrls: string[] = [];
+            if (vehicleImageFiles && vehicleImageFiles.length > 0) {
+                for (const file of vehicleImageFiles) {
+                    const url = await storageService.uploadVehicleImage(file, newVehicle.id);
+                    uploadedImageUrls.push(url);
                 }
             }
 
-            // 2. Prepare data with new URLs
-            const vehicleToCreate = {
-                ...data,
-                images: [
-                    ...(data.images || []),
-                    ...uploadedImageUrls.map(url => ({ url, isCover: false })) // Map strings to objects
-                ]
-            };
+            // 4. Add images to DB
+            // Also include any existing image URLs that might have been passed (though rare for create)
+            const existingImageUrls = (vehicleData.images || []).map((img: any) => img.url);
+            const allImageUrls = [...existingImageUrls, ...uploadedImageUrls];
 
-            // Remove auxiliary field before sending to domain/repo
-            delete (vehicleToCreate as any).vehicleImageFiles;
+            if (allImageUrls.length > 0) {
+                await vehicleRepo.addImages(newVehicle.id, allImageUrls);
+            }
 
-            const newVehicle = await createUseCase.execute(vehicleToCreate as any);
-            return newVehicle;
+            // 5. Fetch updated vehicle to return full object with images
+            const finalVehicle = await getUseCase.execute(newVehicle.id);
+            return finalVehicle || newVehicle;
+
         } catch (err) {
             setError('Erro ao criar veículo');
             console.error(err);
@@ -89,7 +93,7 @@ export function useVehicles() {
         } finally {
             setIsLoading(false);
         }
-    }, [createUseCase, storageService]);
+    }, [createUseCase, storageService, vehicleRepo, getUseCase]);
 
     const updateVehicle = useCallback(async (id: string, data: Partial<Vehicle>) => {
         setIsLoading(true);
