@@ -15,6 +15,8 @@ import { Button } from '@/presentation/components/ui/Button/Button';
 import { Spinner } from '@/presentation/components/ui/Spinner/Spinner';
 import { ArrowLeft, Wifi, WifiOff } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { BidAdapter } from '@/presentation/adapters/BidAdapter';
+import { AuctionStatus } from '@/core/entities/Auction';
 
 interface LivePageProps {
     params: Promise<{
@@ -28,8 +30,8 @@ export default function LiveBiddingPage({ params }: LivePageProps) {
     const { state: biddingState, connectionStatus, placeBid } = useBidding(id);
 
     // Hooks de Realtime
-    const { bids: realtimeBids, isConnected: bidsConnected } = useRealtimeBids(id, biddingState?.bids || []);
-    const { status: auctionStatus, isActive, isConnected: statusConnected } = useRealtimeAuctionStatus(id, 'ACTIVE');
+    const { bids: realtimeBids, isConnected: bidsConnected } = useRealtimeBids(id, BidAdapter.toCoreArray(biddingState?.bids || []));
+    const { status: auctionStatus, isActive, isConnected: statusConnected } = useRealtimeAuctionStatus(id, AuctionStatus.ACTIVE);
 
     // Como não temos endpoint real que cruza vehicle-auction ainda, vou usar um mock de vehicleId ou buscar o veículo
     // que o leilão se refere. Para simplificar o mock, vou pegar um veículo fixo ou buscar se tivesse ID.
