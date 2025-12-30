@@ -3,20 +3,22 @@
 import React, { use } from 'react';
 import { Container } from '@/presentation/components/layout/Container/Container';
 import { useBidding } from '@/presentation/hooks/useBidding';
+import { useRealtimeBids } from '@/presentation/hooks/useRealtimeBids';
+import { useRealtimeAuctionStatus } from '@/presentation/hooks/useRealtimeAuctionStatus';
 import { BidPanel } from '@/presentation/components/features/bidding/BidPanel';
 import { BidHistory } from '@/presentation/components/features/bidding/BidHistory';
 import { VehicleGallery } from '@/presentation/components/features/vehicles/VehicleGallery';
 import { VehicleInfo } from '@/presentation/components/features/vehicles/VehicleInfo';
 import { VehicleSpecs } from '@/presentation/components/features/vehicles/VehicleSpecs';
-import { useVehicles } from '@/presentation/hooks/useVehicles'; // Reusar para dados estáticos do veículo
+import { useVehicles } from '@/presentation/hooks/useVehicles';
 import { Button } from '@/presentation/components/ui/Button/Button';
 import { Spinner } from '@/presentation/components/ui/Spinner/Spinner';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Wifi, WifiOff } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 interface LivePageProps {
     params: Promise<{
-        id: string; // Auction ID or Vehicle ID? Assuming AuctionID contains Vehicle info normally. But let's assume params.id is auctionId.
+        id: string;
     }>;
 }
 
@@ -24,6 +26,10 @@ export default function LiveBiddingPage({ params }: LivePageProps) {
     const router = useRouter();
     const { id } = use(params);
     const { state: biddingState, connectionStatus, placeBid } = useBidding(id);
+
+    // Hooks de Realtime
+    const { bids: realtimeBids, isConnected: bidsConnected } = useRealtimeBids(id, biddingState?.bids || []);
+    const { status: auctionStatus, isActive, isConnected: statusConnected } = useRealtimeAuctionStatus(id, 'ACTIVE');
 
     // Como não temos endpoint real que cruza vehicle-auction ainda, vou usar um mock de vehicleId ou buscar o veículo
     // que o leilão se refere. Para simplificar o mock, vou pegar um veículo fixo ou buscar se tivesse ID.
