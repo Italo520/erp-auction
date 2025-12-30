@@ -1,7 +1,78 @@
 import { supabase } from '@/infrastructure/api/supabaseClient';
+import { IStorageService } from '@/core/interfaces/IStorageService';
 
-export class SupabaseStorageService {
+export class SupabaseStorageService implements IStorageService {
   private bucket = 'vehicles';
+
+  // ============================================
+  // IStorageService Interface Implementation
+  // ============================================
+
+  /**
+   * Faz upload de um arquivo para o storage.
+   * @param file - Arquivo a ser enviado
+   * @param path - Caminho onde o arquivo será armazenado
+   * @returns Promise com a URL pública do arquivo
+   */
+  async upload(file: File, path: string): Promise<string> {
+    try {
+      const { data, error } = await supabase.storage
+        .from(this.bucket)
+        .upload(path, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (error) throw error;
+
+      return this.getUrl(data.path);
+    } catch (error) {
+      console.error('Erro no upload:', error);
+      throw new Error('Falha ao fazer upload do arquivo.');
+    }
+  }
+
+  /**
+   * Remove um arquivo do storage.
+   * @param url - URL pública do arquivo a ser removido
+   * @returns Promise void
+   */
+  async delete(url: string): Promise<void> {
+    try {
+      const path = this.extractPathFromUrl(url);
+
+      if (!path) {
+        console.warn('URL inválida ou arquivo não pertence a este bucket:', url);
+        return;
+      }
+
+      const { error } = await supabase.storage
+        .from(this.bucket)
+        .remove([path]);
+
+      if (error) throw error;
+    } catch (error) {
+      console.error('Erro ao deletar arquivo:', error);
+      throw new Error('Falha ao remover arquivo do armazenamento.');
+    }
+  }
+
+  /**
+   * Obtém a URL pública de um arquivo.
+   * @param path - Caminho do arquivo no storage
+   * @returns URL pública do arquivo
+   */
+  getUrl(path: string): string {
+    const { data } = supabase.storage
+      .from(this.bucket)
+      .getPublicUrl(path);
+
+    return data.publicUrl;
+  }
+
+  // ============================================
+  // Vehicle-Specific Methods
+  // ============================================
 
   /**
    * Faz upload da imagem de um veículo organizando por pasta do ID.
@@ -13,18 +84,10 @@ export class SupabaseStorageService {
       const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
       const filePath = `${vehicleId}/${fileName}`;
 
-      const { data, error } = await supabase.storage
-        .from(this.bucket)
-        .upload(filePath, file, {
-          cacheControl: '3600',
-          upsert: false
-        });
-
-      if (error) throw error;
-
-      return this.getImageUrl(data.path);
+      // Usa o método genérico upload
+      return await this.upload(file, filePath);
     } catch (error) {
-      console.error('Erro no upload:', error);
+      console.error('Erro no upload da imagem do veículo:', error);
       throw new Error('Falha ao fazer upload da imagem do veículo.');
     }
   }
@@ -33,35 +96,17 @@ export class SupabaseStorageService {
    * Remove uma imagem do bucket baseada na URL pública.
    */
   async deleteVehicleImage(imageUrl: string): Promise<void> {
-    try {
-      // Extrai o caminho relativo do arquivo a partir da URL completa
-      const path = this.extractPathFromUrl(imageUrl);
-
-      if (!path) {
-        console.warn('URL inválida ou arquivo não pertence a este bucket:', imageUrl);
-        return;
-      }
-
-      const { error } = await supabase.storage
-        .from(this.bucket)
-        .remove([path]);
-
-      if (error) throw error;
-    } catch (error) {
-      console.error('Erro ao deletar imagem:', error);
-      throw new Error('Falha ao remover imagem do armazenamento.');
-    }
+    // Usa o método genérico delete
+    return this.delete(imageUrl);
   }
 
   /**
    * Gera a URL pública para um caminho específico.
+   * @deprecated Use getUrl instead
    */
   getImageUrl(path: string): string {
-    const { data } = supabase.storage
-      .from(this.bucket)
-      .getPublicUrl(path);
-
-    return data.publicUrl;
+    // Alias para o método genérico getUrl
+    return this.getUrl(path);
   }
 
   /**
@@ -81,7 +126,7 @@ export class SupabaseStorageService {
 
       // Retorna array vazio se não houver dados, senão mapeia para URLs completas
       return data
-        ? data.map((file: { name: string }) => this.getImageUrl(`${vehicleId}/${file.name}`))
+        ? data.map((file: { name: string }) => this.getUrl(`${vehicleId}/${file.name}`))
         : [];
     } catch (error) {
       console.error('Erro ao listar imagens:', error);
