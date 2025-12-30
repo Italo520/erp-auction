@@ -1,8 +1,0 @@
-{
-  "/api/vehicles/route": "app/api/vehicles/route.js",
-  "/api/vehicles/available/route": "app/api/vehicles/available/route.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
-  "/(dashboard)/leiloes/page": "app/(dashboard)/leiloes/page.js",
-  "/(dashboard)/leiloes/[id]/page": "app/(dashboard)/leiloes/[id]/page.js"
-}
