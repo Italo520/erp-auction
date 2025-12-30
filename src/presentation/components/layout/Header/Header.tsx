@@ -6,11 +6,14 @@ import { HeaderProps } from './Header.types';
 import { Button } from '@/presentation/components/ui/Button/Button';
 import { Input } from '@/presentation/components/ui/Input/Input';
 
-export const Header: React.FC<HeaderProps> = ({ title, actions }) => {
+export const Header: React.FC<HeaderProps> = ({ title, actions, onMenuClick }) => {
     return (
         <header className="h-16 bg-white dark:bg-[#111722] border-b border-slate-200 dark:border-slate-800 px-6 flex items-center justify-between sticky top-0 z-30">
             <div className="flex items-center gap-4">
-                <button className="lg:hidden p-2 -ml-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+                <button
+                    onClick={onMenuClick}
+                    className="lg:hidden p-2 -ml-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                >
                     <Menu size={20} />
                 </button>
                 {title && (

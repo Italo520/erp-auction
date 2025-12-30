@@ -15,4 +15,6 @@ export interface SidebarUserProps {
 
 export interface SidebarProps {
     className?: string;
+    isOpen?: boolean;
+    onClose?: () => void;
 }
