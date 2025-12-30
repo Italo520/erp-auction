@@ -20,4 +20,7 @@ export interface IVehicleRepository {
   // Gestão de Mídia
   addImages(vehicleId: string, imageUrls: string[]): Promise<void>;
   setCoverImage(vehicleId: string, imageId: string): Promise<void>;
+
+  // Gestão de Leilões
+  findAvailableVehicles(): Promise<Vehicle[]>; // Veículos sem leilão associado
 }

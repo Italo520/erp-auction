@@ -199,4 +199,62 @@ export class SupabaseVehicleRepository implements IVehicleRepository {
             updatedAt: new Date(data.updated_at)
         };
     }
+
+    /**
+     * Busca veículos disponíveis (sem leilão associado)
+     */
+    async findAvailableVehicles(): Promise<Vehicle[]> {
+        const { data, error } = await supabase
+            .from('vehicles')
+            .select(`
+                *,
+                vehicle_images (
+                    id,
+                    url,
+                    is_cover,
+                    order
+                )
+            `)
+            .is('auction_id', null)
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            throw new Error(`Erro ao buscar veículos disponíveis: ${error.message}`);
+        }
+
+        return (data || []).map(row => ({
+            id: row.id,
+            auctionId: row.auction_id,
+            lotNumber: row.lot_number,
+            make: row.make,
+            model: row.model,
+            version: row.version,
+            yearManufacture: row.year_manufacture,
+            yearModel: row.year_model,
+            color: row.color,
+            fuel: row.fuel,
+            transmission: row.transmission,
+            mileage: row.mileage,
+            doors: row.doors,
+            engineNumber: row.engine_number,
+            chassisNumber: row.chassis_number,
+            renavam: row.renavam,
+            plateEnd: row.plate_end,
+            status: row.status,
+            initialBid: row.initial_bid,
+            minimumIncrement: row.minimum_increment,
+            currentBid: row.current_bid,
+            description: row.description,
+            locationCity: row.location_city,
+            locationState: row.location_state,
+            images: row.vehicle_images ? row.vehicle_images.map((img: any) => ({
+                id: img.id,
+                url: img.url,
+                isCover: img.is_cover,
+                order: img.order
+            })) : [],
+            createdAt: new Date(row.created_at),
+            updatedAt: new Date(row.updated_at)
+        }));
+    }
 }
