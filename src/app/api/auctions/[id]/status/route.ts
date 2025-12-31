@@ -31,7 +31,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
         const { status } = body;
 
         // 4. Validar status
-        const validStatuses: AuctionStatus[] = ['DRAFT', 'SCHEDULED', 'ACTIVE', 'PAUSED', 'FINISHED', 'CANCELLED'];
+        const validStatuses: AuctionStatus[] = ['SCHEDULED', 'ACTIVE', 'PAUSED', 'FINISHED', 'CANCELLED'];
 
         if (!status || !validStatuses.includes(status)) {
             return validationErrorResponse({
