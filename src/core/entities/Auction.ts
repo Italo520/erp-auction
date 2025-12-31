@@ -1,6 +1,7 @@
 import { Vehicle } from "./Vehicle";
 
 export enum AuctionStatus {
+  DRAFT = 'DRAFT',         // Rascunho
   SCHEDULED = 'SCHEDULED', // Agendado
   ACTIVE = 'ACTIVE',       // Em andamento (Ao vivo)
   PAUSED = 'PAUSED',       // Pausado administrativamente
