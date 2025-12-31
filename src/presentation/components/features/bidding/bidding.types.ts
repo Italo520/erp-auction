@@ -8,12 +8,13 @@ export interface Bid {
 }
 
 export interface BiddingState {
+    auctionId?: string;
     currentBid: number;
     nextMinimumBid: number;
-    lastBidderId?: string;
-    lastBidderName?: string;
-    endTime: Date;
-    status: 'WAITING' | 'LIVE' | 'PAUSED' | 'FINISHED';
+    lastBidderId?: string | null;
+    lastBidderName?: string | null;
+    endTime?: Date;
+    status?: 'WAITING' | 'LIVE' | 'PAUSED' | 'FINISHED';
     bids: Bid[];
 }
 

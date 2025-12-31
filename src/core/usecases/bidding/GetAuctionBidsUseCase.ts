@@ -17,7 +17,7 @@ export class GetAuctionBidsUseCase {
             throw new Error('ID do leilão é obrigatório');
         }
 
-        const bids = await this.bidRepository.getBidsByAuctionId(auctionId);
+        const bids = await this.bidRepository.findByAuctionId(auctionId);
 
         // Ordenar por valor decrescente (maior lance primeiro)
         return bids.sort((a, b) => b.amount - a.amount);

@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 
         // 2. Parse do body
         const body = await request.json();
-        const { auctionId, amount } = body;
+        const { auctionId, amount, vehicleId } = body;
 
         // 3. Validações básicas
         const errors: Record<string, string> = {};
@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
             auctionId,
             userId: user.id,
             amount: Number(amount),
+            vehicleId
         });
 
         // 6. Retornar sucesso

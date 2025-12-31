@@ -62,6 +62,17 @@ export class SupabaseBidRepository implements IBidRepository {
         return data.map(this.mapToDomain);
     }
 
+    async findByAuctionId(auctionId: string): Promise<Bid[]> {
+        const { data, error } = await supabase
+            .from('bids')
+            .select('*')
+            .eq('auction_id', auctionId)
+            .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        return data.map(this.mapToDomain);
+    }
+
     subscribeToVehicleBids(vehicleId: string, callback: (bid: Bid) => void): () => void {
         const channel = supabase
             .channel(`vehicle_bids_${vehicleId}`)

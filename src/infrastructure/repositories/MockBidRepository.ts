@@ -53,6 +53,12 @@ export class MockBidRepository implements IBidRepository {
     return MOCK_BIDS.filter(b => b.userId === userId);
   }
 
+  async findByAuctionId(auctionId: string): Promise<Bid[]> {
+    return MOCK_BIDS
+      .filter(b => b.auctionId === auctionId && !b.isCancelled)
+      .sort((a, b) => b.amount - a.amount);
+  }
+
   // Simulação de Realtime
   subscribeToVehicleBids(vehicleId: string, callback: (bid: Bid) => void): () => void {
     console.log(`[MockRealtime] Subscribed to bids for vehicle ${vehicleId}`);

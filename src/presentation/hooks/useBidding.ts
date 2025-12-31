@@ -40,6 +40,8 @@ export function useBidding(auctionId: string) {
                     nextMinimumBid,
                     lastBidderId: bids.length > 0 ? bids[0].userId : null,
                     lastBidderName: bids.length > 0 ? `User ${bids[0].userId.slice(0, 4)}` : null,
+                    status: 'LIVE',
+                    endTime: new Date(Date.now() + 3600000), // 1 hora
                     bids: bids.map((bid: any) => ({
                         ...bid,
                         userName: `User ${bid.userId.slice(0, 4)}`,

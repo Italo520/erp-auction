@@ -134,4 +134,8 @@ export class MockVehicleRepository implements IVehicleRepository {
       });
     }
   }
+
+  async findAvailableVehicles(): Promise<Vehicle[]> {
+    return MOCK_VEHICLES.filter(v => !v.auctionId);
+  }
 }

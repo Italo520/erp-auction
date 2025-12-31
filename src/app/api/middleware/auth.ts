@@ -23,7 +23,7 @@ export async function validateAuth(request: NextRequest): Promise<AuthUser | nul
                     getAll() {
                         return cookieStore.getAll();
                     },
-                    setAll(cookiesToSet) {
+                    setAll(cookiesToSet: { name: string, value: string, options: any }[]) {
                         cookiesToSet.forEach(({ name, value, options }) => {
                             cookieStore.set(name, value, options);
                         });
@@ -40,8 +40,8 @@ export async function validateAuth(request: NextRequest): Promise<AuthUser | nul
 
         return {
             id: user.id,
-            email: user.email!,
-            role: user.user_metadata?.role,
+            email: user.email || '',
+            role: user.user_metadata?.role as string | undefined,
         };
     } catch (error) {
         console.error('Error validating auth:', error);

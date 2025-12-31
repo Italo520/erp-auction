@@ -1,24 +1,48 @@
 import { IBidRepository } from '@/core/repositories/IBidRepository';
-// import { User } from '../../entities/User'; // Assuming we have user context
+import { IAuctionRepository } from '@/core/repositories/IAuctionRepository';
+import { AuctionStatus } from '@/core/entities/Auction';
+import { Bid } from '@/core/entities/Bid';
+
+export interface PlaceBidInput {
+    auctionId: string;
+    vehicleId?: string;
+    userId: string;
+    amount: number;
+}
 
 export class PlaceBidUseCase {
-    constructor(private bidRepo: IBidRepository) { }
+    constructor(
+        private bidRepo: IBidRepository,
+        private auctionRepo: IAuctionRepository
+    ) { }
 
-    async execute(auctionId: string, amount: number, userId: string = 'anon'): Promise<void> {
-        // Here we would validate bid amount against rules (increment, current high, etc.)
-        // For now just pass to repo
+    async execute(input: PlaceBidInput): Promise<Bid> {
+        const { auctionId, userId, amount, vehicleId } = input;
 
-        // NOTE: In a real app, userId comes from the authenticated session context passed to the use case
-        // or the repo uses the current session user automatically on create.
-        // Given the simple interface:
+        // 1. Validar se o leilão existe
+        const auction = await this.auctionRepo.findById(auctionId);
+        if (!auction) {
+            throw new Error('Leilão não encontrado');
+        }
 
-        await this.bidRepo.create({
-            auctionId: auctionId,
-            vehicleId: 'unknown', // Warning: Logic gap, PlaceBid usually needs vehicleId if bids are per vehicle
-            userId: userId,
-            amount: amount,
+        // 2. Validar status do leilão
+        if (auction.status !== AuctionStatus.ACTIVE) {
+            throw new Error('Leilão não está ativo');
+        }
+
+        // TODO: Validar se o veículo pertence ao leilão (se vehicleId for fornecido)
+        // TODO: Validar regras de incremento de lance
+
+        // 3. Criar o lance
+        const bid = await this.bidRepo.create({
+            auctionId,
+            vehicleId: vehicleId || 'unknown', // Fallback temporário
+            userId,
+            amount,
             channel: 'WEB',
             isCancelled: false
         });
+
+        return bid;
     }
 }

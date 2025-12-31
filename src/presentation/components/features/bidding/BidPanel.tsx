@@ -21,7 +21,7 @@ export const BidPanel: React.FC<BidPanelProps> = ({ state, connectionStatus, onP
             <div className="absolute top-0 right-0 p-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
             <div className="flex justify-between items-start mb-6 relative">
-                <LiveIndicator status={state.status} connectionStatus={connectionStatus} />
+                <LiveIndicator status={state.status || 'WAITING'} connectionStatus={connectionStatus} />
                 <div className="flex items-center gap-1.5 text-red-500 font-mono font-medium bg-red-50 dark:bg-red-900/20 px-3 py-1 rounded-lg">
                     <Clock size={16} />
                     <span>00:15:30</span>

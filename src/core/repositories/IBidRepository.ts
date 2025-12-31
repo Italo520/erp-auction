@@ -11,6 +11,7 @@ export interface IBidRepository {
 
   // Para perfil do usuário
   findByUserId(userId: string): Promise<Bid[]>;
+  findByAuctionId(auctionId: string): Promise<Bid[]>;
 
   // Realtime subscription (abstração conceitual)
   subscribeToVehicleBids(vehicleId: string, callback: (bid: Bid) => void): () => void;
